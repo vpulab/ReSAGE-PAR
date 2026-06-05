@@ -1,4 +1,4 @@
-# 🧪 Synthetic Pseudo-Labeling Pipeline 🚶‍♂️✨
+# 🧪 ReSAGE-PAR: Representational Similarity Assessment for Generative Expansion in Pedestrian Attribute Recognition 🚶‍♂️✨
 
 End-to-end pipeline to **generate dataset-aware synthetic pedestrian images**, **score text–image alignment**, and **produce pseudo-labels** for training Pedestrian Attribute Recognition (PAR) models.
 
