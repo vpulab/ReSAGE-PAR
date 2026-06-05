@@ -216,127 +216,233 @@ def _split_train_val_idx(n: int, val_frac: float, rng: np.random.Generator):
 
 listColumnsNotAttributes=["pos/neg", "imgpath", "score", "decision"]
 
-def executeTrainIdentityStrategy(strategy,
-                               df: pd.DataFrame,
-                               clf,
-                               clf_tag: str,
-                               artifacts: str,
-                               imgpaths: list[str],
-                               attr_names: list[str],
-                               activated_vectors: list[list[int]],
-                               prob_threshold: float,
-                               random_state: int = 0,
-                               val_frac: float = 0.20,
-                               labeling_policy: LabelingPolicy = None,
-                               args=None):
+# =====================================================================
+# IDENTITY STRATEGY (Legacy/Global)
+# =====================================================================
+def executeTrainIdentityStrategy(strategy, df, clf, clf_tag, artifacts, imgpaths, attr_names, activated_vectors, activated_vectors_neg, gt_vectors, prob_threshold, random_state=0, val_frac=0.20, labeling_policy=None, args=None):
     global listColumnsNotAttributes
     col_map = STRATEGY_COLUMN_MAP[strategy]
     pos_col = col_map.get("pos", "pos")
     neg_col = col_map.get("neg")
     
-    # Load columns based on strategy
     pos_vecs = [_parse_vector_cell(v) for v in df[pos_col]] if pos_col in df.columns else None
     neg_vecs = [_parse_vector_cell(v) for v in df[neg_col]] if neg_col in df.columns else None
+    
+    
     pos = np.array([v[0] if v else 0.0 for v in pos_vecs], dtype=float) if pos_vecs is not None else None
     neg = np.array([v[0] if v else 0.0 for v in neg_vecs], dtype=float) if neg_vecs is not None else None
     
     n_pos, n_neg = pos.size, neg.size
-
     n = len(df)
     rng = np.random.default_rng(random_state)
-
 
     train_idx, val_idx = _split_train_val_idx(n, val_frac, rng)
     pos_tr, pos_val = pos[train_idx], pos[val_idx]
     neg_tr, neg_val = neg[train_idx], neg[val_idx]
 
-    if pos is None or (neg is None and neg_col):
-        raise ValueError(f"scores_train CSV/XLSX must contain '{pos_col}' and '{neg_col}' columns for strategy '{strategy}'")
+    num_attrs = len(attr_names)
+    gt = _pad_vecs(gt_vectors, num_attrs)
+    act = _pad_vecs(activated_vectors, num_attrs)
+    act_neg = _pad_vecs(activated_vectors_neg, num_attrs)
 
-    # Fit classifier; for Bayes KDE allow configurable bandwidth
+    imgpaths = np.array(imgpaths)
+
+    act_tr, act_val = act[train_idx], act[val_idx]
+    act_neg_tr, act_neg_val = act_neg[train_idx], act_neg[val_idx]
+    img_tr, img_val = imgpaths[train_idx], imgpaths[val_idx]
+    
+    # Aislamos el Ground Truth manteniendo la alineación exacta
+    gt_tr, gt_val = gt[train_idx], gt[val_idx]
+
+
+    if pos is None or (neg is None and neg_col):
+        raise ValueError(f"scores_train CSV/XLSX must contain '{pos_col}' and '{neg_col}'")
+
     if hasattr(clf, "mode") and getattr(clf, "mode") == "kde":
-        bandwidth = None
-        if args is not None and hasattr(args, "kde_bandwidth") and getattr(args, "kde_bandwidth") not in (None, ""):
-            bandwidth = getattr(args, "kde_bandwidth")
-        clf.fit(pos_tr, neg_tr, bandwidth=(bandwidth if bandwidth is not None else "scott"))
+        bandwidth = getattr(args, "kde_bandwidth", "scott") if args else "scott"
+        clf.fit(pos_tr, neg_tr, bandwidth=bandwidth)
     else:
         clf.fit(pos_tr, neg_tr)
+    
     clf_path = os.path.join(artifacts, "classifier.pkl")
     clf.save(clf_path)
-
     _save_clf_tag(artifacts, clf_tag)
-    msg = f"[train] Trained {clf_tag} with strategy '{strategy}'. Saved to {clf_path}"
-    print(msg)
+    print(f"[train] Trained {clf_tag} with strategy '{strategy}'. Saved to {clf_path}")
 
     X_val = np.concatenate([pos_val, neg_val])
     y_val = np.concatenate([np.ones(pos_val.size, int), np.zeros(neg_val.size, int)])
-
-    # Many simple Bayes classifiers take a 1D array of scores
     y_hat = _predict_labels(clf, X_val)
 
-    val_acc = float(np.mean(y_hat == y_val))
-    pos_acc = float(np.mean(y_hat[:pos_val.size] == 1)) if pos_val.size else float("nan")
-    neg_acc = float(np.mean(y_hat[pos_val.size:] == 0)) if neg_val.size else float("nan")
-
-    # basic stats
-    stats = {
-        "n_pos": float(n_pos),
-        "n_neg": float(n_neg),
-        "n_pos_train": float(pos_tr.size),
-        "n_neg_train": float(neg_tr.size),
-        "n_pos_val": float(pos_val.size),
-        "n_neg_val": float(neg_val.size),
-        "mu_pos_train": float(np.mean(pos_tr)) if pos_tr.size else float("nan"),
-        "mu_neg_train": float(np.mean(neg_tr)) if neg_tr.size else float("nan"),
-        "val_acc": val_acc,
-        "val_pos_acc": pos_acc,
-        "val_neg_acc": neg_acc,
+    distributions_train = {
+        "pos_train": pos_tr,
+        "neg_train": neg_tr
     }
 
+    distributions_val = {
+        "pos_val": pos_val,
+        "neg_val": neg_val
+    }
+
+    stats = {
+        "n_pos": float(n_pos), "n_neg": float(n_neg),
+        "n_pos_train": float(pos_tr.size), "n_neg_train": float(neg_tr.size),
+        "n_pos_val": float(pos_val.size), "n_neg_val": float(neg_val.size),
+        "mu_pos_train": float(np.mean(pos_tr)) if pos_tr.size else float("nan"),
+        "mu_neg_train": float(np.mean(neg_tr)) if neg_tr.size else float("nan"),
+        "val_acc": float(np.mean(y_hat == y_val)),
+        "val_pos_acc": float(np.mean(y_hat[:pos_val.size] == 1)) if pos_val.size else float("nan"),
+        "val_neg_acc": float(np.mean(y_hat[pos_val.size:] == 0)) if neg_val.size else float("nan"),
+        "uniclass_distributions_train": distributions_train,
+        "uniclass_distributions_val": distributions_val
+    }
+
+    csv_cols = ["pos/neg", "imgpath"]  + attr_names
+
+    # Predictions Train
     preds_pos_train = clf.predict(pos_tr, thresh=prob_threshold)
-    labels, decisions = labeling_policy.decide_labels(preds_pos_train, prob_threshold, activated_vectors)
-    rows = []
-    for i in range(len(labels)):
-        rows.append(["pos", imgpaths[i], pos_tr[i], decisions[i]] + labels[i])
+    pseudolabels_pos_train, _ = labeling_policy.decide_labels(preds_pos_train, prob_threshold, act_tr)
     
     preds_neg_train = clf.predict(neg_tr, thresh=prob_threshold)
-    labels, decisions = labeling_policy.decide_labels(preds_neg_train, prob_threshold, activated_vectors)
-
-    rows = []
-    for i in range(len(labels)):
-        rows.append(["neg", imgpaths[i], neg_tr[i], decisions[i]] + labels[i])    
-
+    pseudolabels_neg_train, _ = labeling_policy.decide_labels(preds_neg_train, prob_threshold, act_neg_tr)
     
-    out_df = pd.DataFrame(rows, columns=listColumnsNotAttributes + attr_names)
-    out_csv = os.path.join(artifacts, "train_predictions.csv")
-    out_df.to_csv(out_csv, index=False)
-    print(f"[train] Saved predicted vectors to {out_csv}")
 
+    _save_and_evaluate(img_tr, pseudolabels_pos_train, pseudolabels_neg_train, "train", gt_tr, csv_cols, attr_names, artifacts)
 
-    gettingPedestrianMetrics(out_df, artifacts, "train")
-
+    # Predictions Val
     preds_pos_val = clf.predict(pos_val, thresh=prob_threshold)
-    labels, decisions = labeling_policy.decide_labels(preds_pos_val, prob_threshold, activated_vectors)
-    rows = []
-    for i in range(len(labels)):
-        rows.append(["pos", imgpaths[i], pos_val[i], decisions[i]] + labels[i])
+    pseudolabels_pos_val, _ = labeling_policy.decide_labels(preds_pos_val, prob_threshold, act_val)
     
     preds_neg_val = clf.predict(neg_val, thresh=prob_threshold)
-    labels, decisions = labeling_policy.decide_labels(preds_neg_val, prob_threshold, activated_vectors)
+    pseudolabels_neg_val, _ = labeling_policy.decide_labels(preds_neg_val, prob_threshold, act_neg_val)
+    
+    print(preds_pos_train[0])
+    print(preds_neg_train[0])
+    print(pseudolabels_pos_train[0])
+    print(pseudolabels_neg_train[0])
 
-    rows = []
-    for i in range(len(labels)):
-        rows.append(["neg", imgpaths[i], neg_val[i], decisions[i]] + labels[i])   
+    _save_and_evaluate(img_val, pseudolabels_pos_val, pseudolabels_neg_val, "val", gt_val, csv_cols, attr_names, artifacts)
 
-
-    out_df = pd.DataFrame(rows, columns=listColumnsNotAttributes + attr_names)
-    out_csv = os.path.join(artifacts, "val_predictions.csv")
-    out_df.to_csv(out_csv, index=False)
-    print(f"[val] Saved predicted vectors to {out_csv}")
-
-    gettingPedestrianMetrics(out_df, artifacts, "val")
     return stats
 
+
+# --- GUARDADO Y CÁLCULO DIRECTO DE MÉTRICAS (ADAPTADO) ---
+def _save_and_evaluate(img_paths, rows_pos, rows_neg, split_name, gt_aligned, csv_cols, attr_names, artifacts):
+    # 1. PREPARACIÓN DE LOS DATOS CON METADATOS (pos/neg e img_path)
+    # Creamos las filas completas combinando la etiqueta, la ruta y los scores
+    final_rows_pos = []
+    for path, row in zip(img_paths, rows_pos):
+        # Insertamos 'pos' y la ruta al inicio de la lista de scores
+        final_rows_pos.append(['pos', path] + list(row))
+        
+    final_rows_neg = []
+    for path, row in zip(img_paths, rows_neg):
+        # Insertamos 'neg' y la ruta al inicio de la lista de scores
+        final_rows_neg.append(['neg', path] + list(row))
+
+    # Definimos los nombres de las columnas actualizados
+    # Asegúrate de que csv_cols original solo contenía los nombres de los atributos o scores
+    full_csv_cols = ['pos/neg', 'img_path'] + attr_names # O usa csv_cols si ya está alineado
+
+    # 2. CREACIÓN DEL DATAFRAME GLOBAL (Para CSV y gráficas)
+    out_df_all = pd.DataFrame(final_rows_pos + final_rows_neg, columns=full_csv_cols)
+    
+    # Convertimos a entero solo las columnas de atributos/decisiones
+    for a in attr_names:
+        if a in out_df_all.columns:
+            out_df_all[a] = pd.to_numeric(out_df_all[a], errors='coerce').fillna(-1).astype(int)
+        
+    # Exportamos CSV amigable con Excel
+    csv_path = os.path.join(artifacts, f"{split_name}_predictions.csv")
+    out_df_all.to_csv(csv_path, sep=";", decimal=".", index=False)
+    print(f"CSV guardado en: {csv_path}")
+    
+    # 3. CÁLCULO DE MÉTRICAS (Usando solo las filas 'pos')
+    # Creamos un DataFrame temporal solo con los positivos para la evaluación real
+    out_df_pos = pd.DataFrame(final_rows_pos, columns=full_csv_cols)
+    
+    # Extraemos la matriz de predicciones (solo las columnas de los atributos)
+    preds_binarias_pos = out_df_pos[attr_names].to_numpy(dtype=float)
+    
+    print(f"Evaluando {split_name}...")
+    # Llamada a la función de métricas
+    metricas_pos = get_pedestrian_metrics(
+        gt_label=gt_aligned, 
+        preds_probs=preds_binarias_pos, 
+        threshold=0.5, 
+        ignore_value=-1 
+    )
+    
+    metricas_pos["attributes"] = attr_names
+
+
+    # 3. CÁLCULO DE MÉTRICAS (Usando solo las filas 'neg')
+    # Creamos un DataFrame temporal solo con los positivos para la evaluación real
+    out_df_neg = pd.DataFrame(final_rows_neg, columns=full_csv_cols)
+    
+    # Extraemos la matriz de predicciones (solo las columnas de los atributos)
+    preds_binarias_neg = out_df_neg[attr_names].to_numpy(dtype=float)
+    
+    
+    # Llamada a la función de métricas
+    metricas_neg = get_pedestrian_metrics(
+        gt_label=gt_aligned, 
+        preds_probs=preds_binarias_neg, 
+        threshold=0.5, 
+        ignore_value=-1 
+    )
+    
+    metricas_neg["attributes"] = attr_names
+
+
+    preds_binarias_all = out_df_all[attr_names].to_numpy(dtype=float) 
+    gt_aligned_all = np.vstack((gt_aligned, gt_aligned))
+
+    print(preds_binarias_all[0])
+    print(gt_aligned_all[0])
+
+    print(preds_binarias_all[len(preds_binarias_pos)])
+    print(gt_aligned_all[len(gt_aligned)])
+
+    # Llamada a la función de métricas
+    metricas_all = get_pedestrian_metrics(
+        gt_label=gt_aligned_all, 
+        preds_probs=preds_binarias_all, 
+        threshold=0.5, 
+        ignore_value=-1 
+    )
+    
+    metricas_all["attributes"] = attr_names
+
+    metricas = {}
+
+    metricas["all"] = metricas_all
+    metricas["pos"] = metricas_pos
+    metricas["neg"] = metricas_neg
+
+    # 4. GUARDADO DE RESULTADOS EN JSON
+    # Función recursiva auxiliar para limpiar cualquier tipo de NumPy oculto
+    def make_json_serializable(obj):
+        if isinstance(obj, dict):
+            return {k: make_json_serializable(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [make_json_serializable(v) for v in obj]
+        elif isinstance(obj, np.ndarray):
+            return obj.tolist()
+        elif isinstance(obj, np.generic): # Convierte np.float32, np.int64, etc. a float/int nativos
+            return obj.item()
+        return obj
+
+    # Limpiamos todo el diccionario de golpe
+    metricas_dict = make_json_serializable(metricas)
+    
+    json_path = os.path.join(artifacts, f"{split_name}_metrics_report.json")
+    
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(metricas_dict, f, indent=2)
+    
+    print(f"Métricas guardadas en: {json_path}")
+    
+    return metricas
 
 
 
@@ -403,79 +509,67 @@ def cmd_train(args):
 
     return stats
 
-def executeTestIdentityStrategy(strategy,
-                              df: pd.DataFrame,
-                              clf,
-                              clf_tag: str,
-                              artifacts: str,
-                              imgpaths: list[str],
-                              attr_names: list[str],
-                              activated_vectors: list[list[int]],
-                              prob_threshold: float,
-                              labeling_policy: LabelingPolicy = None):
-    
-    global listColumnsNotAttributes
-    col_map = STRATEGY_COLUMN_MAP[strategy]
-    pos_col = col_map.get("pos", "pos")
-    neg_col = col_map.get("neg")
 
+def _pad_vecs(vecs: list, length: int) -> np.ndarray:
+    res = []
+    for v in vecs:
+        if not v:
+            res.append([0.0] * length)
+        elif len(v) < length:
+            res.append(v + [0.0] * (length - len(v)))
+        else:
+            res.append(v[:length])
+    return np.array(res, dtype=float)
+
+def executeTestIdentityStrategy(strategy, df, clf, clf_tag, artifacts, imgpaths, attr_names, activated_vectors, activated_vectors_neg, gt_vectors, prob_threshold, labeling_policy=None):
+    global listColumnsNotAttributes
+    pos_col = STRATEGY_COLUMN_MAP[strategy].get("pos", "pos")
+    neg_col = STRATEGY_COLUMN_MAP[strategy].get("neg")
 
     pos_vecs = [_parse_vector_cell(v) for v in df[pos_col]] if pos_col in df.columns else None
     neg_vecs = [_parse_vector_cell(v) for v in df[neg_col]] if neg_col in df.columns else None
-    if pos_vecs is None:
-        raise ValueError(f"scores_test CSV/XLSX must contain '{pos_col}' column for strategy '{strategy}'")
-
+    
     pos_scores = np.array([v[0] if v else 0.0 for v in pos_vecs], dtype=float)
     neg_scores = np.array([v[0] if v else 0.0 for v in neg_vecs], dtype=float) if neg_vecs is not None else None
-    
-    
 
-    n_pos, n_neg = pos_scores.size, neg_scores.size
+    num_attrs = len(attr_names)
+    gt = _pad_vecs(gt_vectors, num_attrs)
+    act = _pad_vecs(activated_vectors, num_attrs)
+    act_neg = _pad_vecs(activated_vectors_neg, num_attrs)
 
-    # --- Validate on the held-out 20% ---
+    imgpaths = np.array(imgpaths)
+
     X_val = np.concatenate([pos_scores, neg_scores])
     y_val = np.concatenate([np.ones(pos_scores.size, int), np.zeros(neg_scores.size, int)])
-
-    # Many simple Bayes classifiers take a 1D array of scores
     y_hat = _predict_labels(clf, X_val)
 
-    test_acc = float(np.mean(y_hat == y_val))
-    test_pos_acc = float(np.mean(y_hat[:pos_scores.size] == 1)) if pos_scores.size else float("nan")
-    test_neg_acc = float(np.mean(y_hat[pos_scores.size:] == 0)) if neg_scores.size else float("nan")
+    distributions_test = {
+        "pos_test": pos_scores,
+        "neg_test": neg_scores
+    }
 
-    # basic stats
     stats = {
-        "n_pos_test": float(n_pos),
-        "n_neg_test": float(n_neg),
+        "n_pos_test": float(pos_scores.size), "n_neg_test": float(neg_scores.size),
         "mu_pos_test": float(np.mean(pos_scores)) if pos_scores.size else float("nan"),
         "mu_neg_test": float(np.mean(neg_scores)) if neg_scores.size else float("nan"),
-        "test_acc": test_acc,
-        "test_pos_acc": test_pos_acc,
-        "test_neg_acc": test_neg_acc,
+        "test_acc": float(np.mean(y_hat == y_val)),
+        "test_pos_acc": float(np.mean(y_hat[:pos_scores.size] == 1)) ,
+        "test_neg_acc": float(np.mean(y_hat[pos_scores.size:] == 0)),
+        "uniclass_distributions_test": distributions_test,
+                
     }
-    # --- Save predictions on test set ---
-    preds_pos = clf.predict(pos_scores, thresh=prob_threshold)
-    labels, decisions = labeling_policy.decide_labels(preds_pos, prob_threshold, activated_vectors)
-    rows = []
-    for i in range(len(labels)):
-        rows.append(["pos", imgpaths[i], pos_scores[i], decisions[i]] + labels[i])
 
+    csv_cols = ["pos/neg", "imgpath"] + attr_names
+
+
+    preds_pos = clf.predict(pos_scores, thresh=prob_threshold)
+    pseudolabels_pos_train, _ = labeling_policy.decide_labels(preds_pos, prob_threshold, act)
+    
     
     preds_neg = clf.predict(neg_scores, thresh=prob_threshold)
-    labels, decisions = labeling_policy.decide_labels(preds_neg, prob_threshold, activated_vectors)
-
-    rows = []
-    for i in range(len(labels)):
-        rows.append(["neg", imgpaths[i], neg_scores[i], decisions[i]] + labels[i])
-
-
-    out_df = pd.DataFrame(rows, columns=listColumnsNotAttributes + attr_names)
-    out_csv = os.path.join(artifacts, "test_predictions.csv")
-    out_df.to_csv(out_csv, index=False)
-    print(f"[test] Saved predictions to {out_csv}")
-
-    gettingPedestrianMetrics(out_df, artifacts, "test")
-
+    pseudolabels_neg_train, _ = labeling_policy.decide_labels(preds_neg, prob_threshold, act_neg)
+    
+    _save_and_evaluate(imgpaths, pseudolabels_pos_train, pseudolabels_neg_train, "test", gt, csv_cols, attr_names, artifacts)
 
     return stats
 
