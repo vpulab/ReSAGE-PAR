@@ -398,6 +398,3 @@ This often happens when mixing `python file.py` and `python -m module`.
 
 Happy experimenting! 🚀✨
 
-```
-::contentReference[oaicite:0]{index=0}
-```
