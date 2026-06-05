@@ -1,0 +1,16 @@
+# Example configuration for getMetadataDataset.py with custom dataset paths
+# This example shows how to use custom paths instead of defaults
+
+# Dataset configuration
+dataset:
+  module: "customDatasets.PA100kAll"          # Module where dataset class is defined
+  class: "PA100kDatasetAll"                   # Dataset class name
+  path_dataset: "/path/to/custom/dataset/"    # Custom path to images (default: /mnt/rhome/paa/pedestrian/datasetForFID/PA100k/train/)
+  path_gt: "/path/to/custom/dataset_all.pkl"  # Custom path to ground truth pickle (default: /mnt/rhome/paa/pedestrian/Rethinking_of_PAR/data/PA100k/dataset_all.pkl)
+  path_gt_img: "/path/to/custom/images/"      # Custom path to gt images (default: /mnt/rhome/paa/pedestrian/Rethinking_of_PAR/data/PA100k/data/)
+
+# Metadata generation options
+metadata:
+  num_images: 79982                           # Number of images to process
+  save_vectors: true                          # Save attribute vectors (for attribute-based image generation)
+  output: "./metadata.jsonl"                  # Output path for generated metadata

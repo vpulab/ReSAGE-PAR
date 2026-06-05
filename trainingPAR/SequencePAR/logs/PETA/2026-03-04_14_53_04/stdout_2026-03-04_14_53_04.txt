@@ -1,0 +1,54 @@
+2026-03-04_14_53_04
+OrderedDict([('dataset', 'PETA'),
+             ('batchsize', 32),
+             ('epoch', 50),
+             ('height', 224),
+             ('width', 224),
+             ('lr', 1e-06),
+             ('weight_decay', 0.0001),
+             ('optim', 'AdamW'),
+             ('train_split', 'trainval'),
+             ('valid_split', 'test'),
+             ('gpus', '6'),
+             ('redirector', True),
+             ('epoch_save_ckpt', 1),
+             ('check_point', False),
+             ('dir', None),
+             ('depth', 6),
+             ('beam_size', 1),
+             ('pkl_path', './model/peta.pkl'),
+             ('datasets_path', '/wangxiao/jjd/PETAPad/Pad_datasets'),
+             ('model_path', './model/model'),
+             ('use_class_weight', False),
+             ('syn_use', True),
+             ('synthetic_path',
+              '/mnt/rhome/paa/pedestrian/dataAugmentationMethods/LORA/diffusers/examples/text_to_image/petazs_lora_32_with_transform_256_192_loss_train_model_21_5_withPETA_reb_forlabeling_por2/'),
+             ('syn_pseudolabels_csv', 'generated.csv'),
+             ('seed', 42),
+             ('syn_use_frac', 1.0),
+             ('syn_img_subdir', 'generatedImgs/')])
+------------------------------------------------------------
+train set: PETA trainval, test set: test
+(19000, 35)
+35
+min/max: 0 34
+tail: [25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
+shape: (19000, 35)
+[SYN-PL] Loading synthetic pseudolabels from CSV: generated.csv
+       img_name  personalLess30  personalLess45  personalLess60  personalLarger60  ...  upperBodySuit  carryingSuitcase  lowerBodySuits  upperBodySweater  upperBodyThickStripes
+0  img-0_1.png              -1              -1              -1                -1  ...             -1                -1              -1                -1                     -1
+1  img-1_1.png               1              -1              -1                -1  ...             -1                -1              -1                -1                     -1
+2  img-2_1.png              -1               1              -1                -1  ...              1                -1               1                -1                     -1
+3  img-3_1.png              -1               1              -1                -1  ...             -1                -1              -1                -1                     -1
+4  img-4_1.png               1              -1              -1                -1  ...             -1                -1              -1                -1                     -1
+
+[5 rows x 106 columns]
+Processing synthetic pseudolabels CSV entries... dfPL length:22482
+lenght syn vector 35
+[SYN-PL] Merged synthetic (pseudolabels CSV): +22482 => total 33882
+(19000, 35)
+35
+min/max: 0 34
+tail: [25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
+shape: (19000, 35)
+trainval set: 33882, test set: 7600, attr_num : 35

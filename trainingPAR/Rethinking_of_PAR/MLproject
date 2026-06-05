@@ -1,0 +1,11 @@
+name: training_rethinking
+
+#python_env: python_env.yaml
+#conda_env: conda.yaml
+#conda_env: condajaja.yaml
+
+entry_points:
+  main:
+    parameters:
+      cfg: {type: string, default: './configs/pedes_baseline/petagithubconfigLRsave.yaml'}
+    command: "python3 train.py --cfg {cfg}"

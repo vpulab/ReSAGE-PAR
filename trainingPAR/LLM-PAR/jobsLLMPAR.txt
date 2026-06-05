@@ -1,0 +1,39 @@
+
+export CSIC_realdata="/mnt/rhome/paa/pedestrian/Rethinking_of_PAR/data/"
+export CSIC_syndata="/mnt/rhome/paa/pedestrian/dataAugmentationMethods/LORA/diffusers/examples/text_to_image/"
+
+
+
+python train.py --dataset PETA --exp PETA_baseline
+python train.py --dataset PETA --use_synthetic --exp PETA_syn
+
+python train.py --dataset PA100k --exp PA100k_baseline
+python train.py --dataset PA100k --use_synthetic --exp PA100k_syn
+
+python train.py --dataset RAP --exp RAP_baseline 
+python train.py --dataset RAP --use_synthetic --exp RAP_syn
+
+
+torchrun \
+    --nnodes=3 \
+    --nproc_per_node=1 \
+    --node_rank=0 \
+    --master_addr="192.168.23.224" \
+    --master_port=29500 \
+    train_distributed.py --dataset PETA --use_synthetic --exp PETA_syn --batchsize 1
+
+torchrun \
+    --nnodes=3 \
+    --nproc_per_node=1 \
+    --node_rank=1 \
+    --master_addr="192.168.23.224" \
+    --master_port=29500 \
+    train_distributed.py --dataset PETA --use_synthetic --exp PETA_syn --batchsize 1
+
+torchrun \
+    --nnodes=3 \
+    --nproc_per_node=1 \
+    --node_rank=2 \
+    --master_addr="192.168.23.224" \
+    --master_port=29500 \
+    train_distributed.py --dataset PETA --use_synthetic --exp PETA_syn --batchsize 1

@@ -1,0 +1,582 @@
+2026-03-09_10_24_56
+OrderedDict([('dataset', 'RAPV2'),
+             ('batchsize', 32),
+             ('epoch', 40),
+             ('height', 224),
+             ('width', 224),
+             ('lr', 1e-06),
+             ('weight_decay', 0.0001),
+             ('optim', 'AdamW'),
+             ('train_split', 'trainval'),
+             ('valid_split', 'test'),
+             ('gpus', '6'),
+             ('redirector', True),
+             ('epoch_save_ckpt', 1),
+             ('check_point', False),
+             ('dir', None),
+             ('depth', 6),
+             ('beam_size', 1),
+             ('pkl_path', './model/peta.pkl'),
+             ('datasets_path', '/wangxiao/jjd/PETAPad/Pad_datasets'),
+             ('model_path', './model/model'),
+             ('use_class_weight', False),
+             ('syn_use', False),
+             ('synthetic_path', None),
+             ('syn_pseudolabels_csv', None),
+             ('seed', 42),
+             ('syn_use_frac', 1.0),
+             ('syn_img_subdir', None)])
+------------------------------------------------------------
+train set: RAPV2 trainval, test set: test
+(84928, 54)
+54
+min/max: 0 53
+tail: [44, 45, 46, 47, 48, 49, 50, 51, 52, 53]
+shape: (84928, 54)
+(84928, 54)
+54
+min/max: 0 53
+tail: [44, 45, 46, 47, 48, 49, 50, 51, 52, 53]
+shape: (84928, 54)
+trainval set: 67943, test set: 16985, attr_num : 54
+max_length 55, vocab_size 57, decoder depth 6
+The optimizer used AdamW
+Epoch: [1]  [   0/2124]  eta: 10:24:20  train_loss: 4.273983 (4.273983)  lr: 0.000000 (0.000000)  time: 17.636574  data: 1.709736  max mem: 21865
+Epoch: [1]  [ 212/2124]  eta: 3:17:48  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.228567  data: 0.000360  max mem: 27244
+Epoch: [1]  [ 424/2124]  eta: 2:53:54  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 5.611884  data: 0.000558  max mem: 27244
+Epoch: [1]  [ 636/2124]  eta: 2:31:33  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.058254  data: 0.000377  max mem: 27244
+Epoch: [1]  [ 848/2124]  eta: 2:10:02  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 5.752541  data: 0.000550  max mem: 27244
+Epoch: [1]  [1060/2124]  eta: 1:48:17  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.163234  data: 0.000376  max mem: 27244
+Epoch: [1]  [1272/2124]  eta: 1:18:19  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.565635  data: 0.000262  max mem: 27244
+Epoch: [1]  [1484/2124]  eta: 0:57:36  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 7.180472  data: 0.000431  max mem: 27244
+Epoch: [1]  [1696/2124]  eta: 0:40:05  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 7.140430  data: 0.000380  max mem: 27244
+Epoch: [1]  [1908/2124]  eta: 0:20:53  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.887444  data: 0.000421  max mem: 27244
+Epoch: [1]  [2120/2124]  eta: 0:00:23  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 7.258943  data: 0.000882  max mem: 27244
+Epoch: [1]  [2123/2124]  eta: 0:00:05  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 7.034237  data: 0.000877  max mem: 27244
+Epoch: [1] Total time: 3:31:02 (5.961777 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 1, LR 2.08e-07, Train_Time 12662.95s, Loss: nan
+----------------------2026-03-09_13_56_24 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0001
+----------------------2026-03-09_18_13_47 on Evalution set,valid_loss:----------------------
+ ma: 0.5000,  pos_recall: 0.0000 , neg_recall: 1.0000 
+ Acc: 0.0000, Prec: 0.0000, Rec: 0.0000, F1: 0.0000
+------------------------------------------------------------
+best ma is 0.5000, in epoch 1 best f1 is 0.0000, in epoch 0
+Epoch: [2]  [   0/2124]  eta: 4:44:58  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 8.050169  data: 2.866714  max mem: 27285
+Epoch: [2]  [ 212/2124]  eta: 3:22:20  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.038198  data: 0.000429  max mem: 27285
+Epoch: [2]  [ 424/2124]  eta: 2:59:13  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 5.842251  data: 0.000556  max mem: 27285
+Epoch: [2]  [ 636/2124]  eta: 2:36:19  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 5.785635  data: 0.000497  max mem: 27285
+Epoch: [2]  [ 848/2124]  eta: 2:13:53  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.321658  data: 0.000353  max mem: 27285
+Epoch: [2]  [1060/2124]  eta: 1:51:35  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.401275  data: 0.000355  max mem: 27285
+Epoch: [2]  [1272/2124]  eta: 1:29:13  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.307261  data: 0.000422  max mem: 27285
+Epoch: [2]  [1484/2124]  eta: 1:07:00  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.224769  data: 0.000360  max mem: 27285
+Epoch: [2]  [1696/2124]  eta: 0:41:24  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.572636  data: 0.000272  max mem: 27285
+Epoch: [2]  [1908/2124]  eta: 0:19:12  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.587564  data: 0.000282  max mem: 27285
+Epoch: [2]  [2120/2124]  eta: 0:00:19  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.576046  data: 0.001546  max mem: 27285
+Epoch: [2]  [2123/2124]  eta: 0:00:04  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.515870  data: 0.001509  max mem: 27285
+Epoch: [2] Total time: 2:55:24 (4.954975 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 2, LR 4.06e-07, Train_Time 10524.48s, Loss: nan
+----------------------2026-03-09_21_09_22 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [3]  [   0/2124]  eta: 2:08:09  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.620181  data: 1.853051  max mem: 27287
+Epoch: [3]  [ 212/2124]  eta: 0:50:26  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.567006  data: 0.000263  max mem: 27287
+Epoch: [3]  [ 424/2124]  eta: 0:44:41  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.568591  data: 0.000283  max mem: 27287
+Epoch: [3]  [ 636/2124]  eta: 0:39:00  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.560463  data: 0.000233  max mem: 27287
+Epoch: [3]  [ 848/2124]  eta: 0:33:24  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.563084  data: 0.000202  max mem: 27287
+Epoch: [3]  [1060/2124]  eta: 0:27:49  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.567143  data: 0.000285  max mem: 27287
+Epoch: [3]  [1272/2124]  eta: 0:22:16  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.565274  data: 0.000242  max mem: 27287
+Epoch: [3]  [1484/2124]  eta: 0:16:43  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.563233  data: 0.000237  max mem: 27287
+Epoch: [3]  [1696/2124]  eta: 0:11:11  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.568836  data: 0.000237  max mem: 27287
+Epoch: [3]  [1908/2124]  eta: 0:05:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.572105  data: 0.000231  max mem: 27287
+Epoch: [3]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.555013  data: 0.000483  max mem: 27287
+Epoch: [3]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.514219  data: 0.000482  max mem: 27287
+Epoch: [3] Total time: 0:55:32 (1.569109 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 3, LR 6.04e-07, Train_Time 3332.85s, Loss: nan
+----------------------2026-03-09_22_04_55 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [4]  [   0/2124]  eta: 1:38:37  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.786011  data: 1.046116  max mem: 27289
+Epoch: [4]  [ 212/2124]  eta: 0:50:09  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.558606  data: 0.000217  max mem: 27289
+Epoch: [4]  [ 424/2124]  eta: 0:44:31  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.571695  data: 0.000300  max mem: 27289
+Epoch: [4]  [ 636/2124]  eta: 0:38:55  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.565143  data: 0.000271  max mem: 27289
+Epoch: [4]  [ 848/2124]  eta: 0:33:19  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.564638  data: 0.000260  max mem: 27289
+Epoch: [4]  [1060/2124]  eta: 0:27:47  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.566085  data: 0.000260  max mem: 27289
+Epoch: [4]  [1272/2124]  eta: 0:22:15  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.567663  data: 0.000282  max mem: 27289
+Epoch: [4]  [1484/2124]  eta: 0:16:43  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.562244  data: 0.000246  max mem: 27289
+Epoch: [4]  [1696/2124]  eta: 0:11:11  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.570973  data: 0.000230  max mem: 27289
+Epoch: [4]  [1908/2124]  eta: 0:05:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.564614  data: 0.000233  max mem: 27289
+Epoch: [4]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.562521  data: 0.000680  max mem: 27289
+Epoch: [4]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.518361  data: 0.000683  max mem: 27289
+Epoch: [4] Total time: 0:55:30 (1.567872 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 4, LR 8.02e-07, Train_Time 3330.21s, Loss: nan
+----------------------2026-03-09_23_00_25 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [5]  [   0/2124]  eta: 1:38:13  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.774598  data: 1.064687  max mem: 27290
+Epoch: [5]  [ 212/2124]  eta: 0:50:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.563611  data: 0.000243  max mem: 27290
+Epoch: [5]  [ 424/2124]  eta: 0:44:25  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.566416  data: 0.000263  max mem: 27290
+Epoch: [5]  [ 636/2124]  eta: 0:38:52  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.576909  data: 0.000264  max mem: 27290
+Epoch: [5]  [ 848/2124]  eta: 0:33:18  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.560691  data: 0.000280  max mem: 27290
+Epoch: [5]  [1060/2124]  eta: 0:27:47  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.568326  data: 0.000237  max mem: 27290
+Epoch: [5]  [1272/2124]  eta: 0:22:14  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.557657  data: 0.000227  max mem: 27290
+Epoch: [5]  [1484/2124]  eta: 0:16:42  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.559338  data: 0.000250  max mem: 27290
+Epoch: [5]  [1696/2124]  eta: 0:11:10  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.560174  data: 0.000220  max mem: 27290
+Epoch: [5]  [1908/2124]  eta: 0:05:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.565573  data: 0.000234  max mem: 27290
+Epoch: [5]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.556645  data: 0.000633  max mem: 27290
+Epoch: [5]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.513424  data: 0.000610  max mem: 27290
+Epoch: [5] Total time: 0:55:25 (1.565904 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 5, LR 9.62015886723132e-07, Train_Time 3326.05s, Loss: nan
+----------------------2026-03-09_23_55_51 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [6]  [   0/2124]  eta: 1:37:41  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.759501  data: 1.118818  max mem: 27290
+Epoch: [6]  [ 212/2124]  eta: 0:50:04  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.562889  data: 0.000293  max mem: 27290
+Epoch: [6]  [ 424/2124]  eta: 0:44:34  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.591004  data: 0.000384  max mem: 27290
+Epoch: [6]  [ 636/2124]  eta: 0:38:57  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.568577  data: 0.000252  max mem: 27290
+Epoch: [6]  [ 848/2124]  eta: 0:33:22  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.569155  data: 0.000289  max mem: 27290
+Epoch: [6]  [1060/2124]  eta: 0:27:48  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.571470  data: 0.000237  max mem: 27290
+Epoch: [6]  [1272/2124]  eta: 0:22:15  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.563402  data: 0.000265  max mem: 27290
+Epoch: [6]  [1484/2124]  eta: 0:16:43  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.557564  data: 0.000244  max mem: 27290
+Epoch: [6]  [1696/2124]  eta: 0:11:10  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.565598  data: 0.000268  max mem: 27290
+Epoch: [6]  [1908/2124]  eta: 0:05:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.562775  data: 0.000299  max mem: 27290
+Epoch: [6]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.567500  data: 0.000780  max mem: 27290
+Epoch: [6]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.521204  data: 0.000775  max mem: 27290
+Epoch: [6] Total time: 0:55:28 (1.566928 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 6, LR 9.456122555699956e-07, Train_Time 3328.20s, Loss: nan
+----------------------2026-03-10_00_51_19 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [7]  [   0/2124]  eta: 1:35:33  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.699616  data: 1.045630  max mem: 27290
+Epoch: [7]  [ 212/2124]  eta: 0:50:03  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.569022  data: 0.000248  max mem: 27290
+Epoch: [7]  [ 424/2124]  eta: 0:44:26  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.570130  data: 0.000261  max mem: 27290
+Epoch: [7]  [ 636/2124]  eta: 0:38:54  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.580253  data: 0.000263  max mem: 27290
+Epoch: [7]  [ 848/2124]  eta: 0:33:21  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.561641  data: 0.000285  max mem: 27290
+Epoch: [7]  [1060/2124]  eta: 0:27:49  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.569939  data: 0.000242  max mem: 27290
+Epoch: [7]  [1272/2124]  eta: 0:22:16  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.578559  data: 0.000302  max mem: 27290
+Epoch: [7]  [1484/2124]  eta: 0:16:43  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.560121  data: 0.000258  max mem: 27290
+Epoch: [7]  [1696/2124]  eta: 0:11:11  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.564547  data: 0.000242  max mem: 27290
+Epoch: [7]  [1908/2124]  eta: 0:05:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.562043  data: 0.000259  max mem: 27290
+Epoch: [7]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.557630  data: 0.000395  max mem: 27290
+Epoch: [7]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.512347  data: 0.000387  max mem: 27290
+Epoch: [7] Total time: 0:55:33 (1.569442 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 7, LR 9.26467442012692e-07, Train_Time 3333.56s, Loss: nan
+----------------------2026-03-10_01_46_53 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [8]  [   0/2124]  eta: 1:43:08  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.913518  data: 1.277829  max mem: 27290
+Epoch: [8]  [ 212/2124]  eta: 0:50:09  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.565698  data: 0.000270  max mem: 27290
+Epoch: [8]  [ 424/2124]  eta: 0:44:26  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.556162  data: 0.000226  max mem: 27290
+Epoch: [8]  [ 636/2124]  eta: 0:38:52  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.570515  data: 0.000256  max mem: 27290
+Epoch: [8]  [ 848/2124]  eta: 0:33:19  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.564989  data: 0.000295  max mem: 27290
+Epoch: [8]  [1060/2124]  eta: 0:27:47  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.571656  data: 0.000229  max mem: 27290
+Epoch: [8]  [1272/2124]  eta: 0:22:14  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.589672  data: 0.000250  max mem: 27290
+Epoch: [8]  [1484/2124]  eta: 0:16:42  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.567235  data: 0.000271  max mem: 27290
+Epoch: [8]  [1696/2124]  eta: 0:11:10  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.561052  data: 0.000302  max mem: 27290
+Epoch: [8]  [1908/2124]  eta: 0:05:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.567885  data: 0.000272  max mem: 27290
+Epoch: [8]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.563818  data: 0.000871  max mem: 27290
+Epoch: [8]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.517357  data: 0.000848  max mem: 27290
+Epoch: [8] Total time: 0:55:27 (1.566649 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 8, LR 9.046994801930989e-07, Train_Time 3327.62s, Loss: nan
+----------------------2026-03-10_02_42_21 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [9]  [   0/2124]  eta: 1:38:09  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.772809  data: 1.136471  max mem: 27290
+Epoch: [9]  [ 212/2124]  eta: 0:50:03  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.562209  data: 0.000255  max mem: 27290
+Epoch: [9]  [ 424/2124]  eta: 0:44:23  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.559011  data: 0.000272  max mem: 27290
+Epoch: [9]  [ 636/2124]  eta: 0:38:49  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.558004  data: 0.000272  max mem: 27290
+Epoch: [9]  [ 848/2124]  eta: 0:33:17  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.556092  data: 0.000273  max mem: 27290
+Epoch: [9]  [1060/2124]  eta: 0:27:46  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.569260  data: 0.000355  max mem: 27290
+Epoch: [9]  [1272/2124]  eta: 0:22:13  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.563005  data: 0.000269  max mem: 27290
+Epoch: [9]  [1484/2124]  eta: 0:16:42  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.553971  data: 0.000223  max mem: 27290
+Epoch: [9]  [1696/2124]  eta: 0:11:10  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.559374  data: 0.000212  max mem: 27290
+Epoch: [9]  [1908/2124]  eta: 0:05:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.572105  data: 0.000244  max mem: 27290
+Epoch: [9]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.559797  data: 0.000681  max mem: 27290
+Epoch: [9]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.513564  data: 0.000686  max mem: 27290
+Epoch: [9] Total time: 0:55:26 (1.566218 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 9, LR 8.804425768344156e-07, Train_Time 3326.70s, Loss: nan
+----------------------2026-03-10_03_37_48 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [10]  [   0/2124]  eta: 1:35:13  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.690029  data: 1.067004  max mem: 27290
+Epoch: [10]  [ 212/2124]  eta: 0:49:57  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.558737  data: 0.000274  max mem: 27290
+Epoch: [10]  [ 424/2124]  eta: 0:44:25  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.563604  data: 0.000231  max mem: 27290
+Epoch: [10]  [ 636/2124]  eta: 0:38:50  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.571862  data: 0.000330  max mem: 27290
+Epoch: [10]  [ 848/2124]  eta: 0:33:18  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.555119  data: 0.000283  max mem: 27290
+Epoch: [10]  [1060/2124]  eta: 0:27:44  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.554310  data: 0.000213  max mem: 27290
+Epoch: [10]  [1272/2124]  eta: 0:22:13  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.576528  data: 0.000230  max mem: 27290
+Epoch: [10]  [1484/2124]  eta: 0:16:41  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.571928  data: 0.000231  max mem: 27290
+Epoch: [10]  [1696/2124]  eta: 0:11:09  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.565870  data: 0.000262  max mem: 27290
+Epoch: [10]  [1908/2124]  eta: 0:05:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.565653  data: 0.000280  max mem: 27290
+Epoch: [10]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.553587  data: 0.000626  max mem: 27290
+Epoch: [10]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.509670  data: 0.000613  max mem: 27290
+Epoch: [10] Total time: 0:55:23 (1.564644 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 10, LR 8.538462838120873e-07, Train_Time 3323.35s, Loss: nan
+----------------------2026-03-10_04_33_11 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [11]  [   0/2124]  eta: 1:33:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.628012  data: 0.979952  max mem: 27290
+Epoch: [11]  [ 212/2124]  eta: 0:49:58  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.556615  data: 0.000237  max mem: 27290
+Epoch: [11]  [ 424/2124]  eta: 0:44:21  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.562683  data: 0.000277  max mem: 27290
+Epoch: [11]  [ 636/2124]  eta: 0:38:49  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.557151  data: 0.000249  max mem: 27290
+Epoch: [11]  [ 848/2124]  eta: 0:33:15  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.579571  data: 0.000346  max mem: 27290
+Epoch: [11]  [1060/2124]  eta: 0:27:44  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.569597  data: 0.000235  max mem: 27290
+Epoch: [11]  [1272/2124]  eta: 0:22:12  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.571676  data: 0.000231  max mem: 27290
+Epoch: [11]  [1484/2124]  eta: 0:16:40  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.561312  data: 0.000217  max mem: 27290
+Epoch: [11]  [1696/2124]  eta: 0:11:09  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.560901  data: 0.000236  max mem: 27290
+Epoch: [11]  [1908/2124]  eta: 0:05:37  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.560827  data: 0.000249  max mem: 27290
+Epoch: [11]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.557283  data: 0.000604  max mem: 27290
+Epoch: [11]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.511320  data: 0.000579  max mem: 27290
+Epoch: [11] Total time: 0:55:22 (1.564333 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 11, LR 8.250745761167618e-07, Train_Time 3322.70s, Loss: nan
+----------------------2026-03-10_05_28_34 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [12]  [   0/2124]  eta: 1:36:05  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.714325  data: 1.080944  max mem: 27290
+Epoch: [12]  [ 212/2124]  eta: 0:49:49  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.550210  data: 0.000251  max mem: 27290
+Epoch: [12]  [ 424/2124]  eta: 0:44:16  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.569459  data: 0.000226  max mem: 27290
+Epoch: [12]  [ 636/2124]  eta: 0:38:47  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.564964  data: 0.000266  max mem: 27290
+Epoch: [12]  [ 848/2124]  eta: 0:33:15  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.564333  data: 0.000313  max mem: 27290
+Epoch: [12]  [1060/2124]  eta: 0:27:43  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.552464  data: 0.000258  max mem: 27290
+Epoch: [12]  [1272/2124]  eta: 0:22:10  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.551719  data: 0.000216  max mem: 27290
+Epoch: [12]  [1484/2124]  eta: 0:16:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.550593  data: 0.000228  max mem: 27290
+Epoch: [12]  [1696/2124]  eta: 0:11:07  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.565722  data: 0.000256  max mem: 27290
+Epoch: [12]  [1908/2124]  eta: 0:05:36  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.548988  data: 0.000244  max mem: 27290
+Epoch: [12]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.357248  data: 0.000650  max mem: 27290
+Epoch: [12]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.278914  data: 0.000605  max mem: 27290
+Epoch: [12] Total time: 0:57:01 (1.611075 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 12, LR 7.943048408939441e-07, Train_Time 3421.97s, Loss: nan
+----------------------2026-03-10_06_25_36 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [13]  [   0/2124]  eta: 3:21:57  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 5.704963  data: 1.932205  max mem: 27290
+Epoch: [13]  [ 212/2124]  eta: 1:47:21  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.429563  data: 0.000397  max mem: 27290
+Epoch: [13]  [ 424/2124]  eta: 1:35:11  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.403572  data: 0.000266  max mem: 27290
+Epoch: [13]  [ 636/2124]  eta: 1:23:32  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.448775  data: 0.000369  max mem: 27290
+Epoch: [13]  [ 848/2124]  eta: 1:11:22  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.351396  data: 0.000404  max mem: 27290
+Epoch: [13]  [1060/2124]  eta: 0:59:25  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.366280  data: 0.000311  max mem: 27290
+Epoch: [13]  [1272/2124]  eta: 0:47:34  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.323866  data: 0.000381  max mem: 27290
+Epoch: [13]  [1484/2124]  eta: 0:34:33  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.570565  data: 0.001226  max mem: 27290
+Epoch: [13]  [1696/2124]  eta: 0:22:46  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.319362  data: 0.000404  max mem: 27290
+Epoch: [13]  [1908/2124]  eta: 0:11:34  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.079374  data: 0.000366  max mem: 27290
+Epoch: [13]  [2120/2124]  eta: 0:00:12  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.378922  data: 0.000781  max mem: 27290
+Epoch: [13]  [2123/2124]  eta: 0:00:03  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.273747  data: 0.000768  max mem: 27290
+Epoch: [13] Total time: 1:54:29 (3.234027 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 13, LR 7.617267837932585e-07, Train_Time 6869.12s, Loss: nan
+----------------------2026-03-10_08_20_05 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [14]  [   0/2124]  eta: 3:09:08  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 5.343007  data: 1.694650  max mem: 27290
+Epoch: [14]  [ 212/2124]  eta: 1:47:23  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.375393  data: 0.000402  max mem: 27290
+Epoch: [14]  [ 424/2124]  eta: 1:35:35  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.481155  data: 0.000341  max mem: 27290
+Epoch: [14]  [ 636/2124]  eta: 1:23:19  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.397288  data: 0.000385  max mem: 27290
+Epoch: [14]  [ 848/2124]  eta: 1:11:20  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.030104  data: 0.000413  max mem: 27290
+Epoch: [14]  [1060/2124]  eta: 0:55:57  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.293123  data: 0.000363  max mem: 27290
+Epoch: [14]  [1272/2124]  eta: 0:45:16  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.361381  data: 0.000324  max mem: 27290
+Epoch: [14]  [1484/2124]  eta: 0:34:12  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.307964  data: 0.000359  max mem: 27290
+Epoch: [14]  [1696/2124]  eta: 0:22:59  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.317173  data: 0.000398  max mem: 27290
+Epoch: [14]  [1908/2124]  eta: 0:11:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.350253  data: 0.000365  max mem: 27290
+Epoch: [14]  [2120/2124]  eta: 0:00:12  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.900960  data: 0.002782  max mem: 27290
+Epoch: [14]  [2123/2124]  eta: 0:00:03  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.815593  data: 0.002757  max mem: 27290
+Epoch: [14] Total time: 1:54:30 (3.234929 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 14, LR 7.275412593700338e-07, Train_Time 6871.15s, Loss: nan
+----------------------2026-03-10_10_14_36 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [15]  [   0/2124]  eta: 3:40:50  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 6.238569  data: 2.888053  max mem: 27290
+Epoch: [15]  [ 212/2124]  eta: 1:45:20  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.235140  data: 0.000371  max mem: 27290
+Epoch: [15]  [ 424/2124]  eta: 1:27:57  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.880303  data: 0.000463  max mem: 27290
+Epoch: [15]  [ 636/2124]  eta: 1:11:14  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.227305  data: 0.000386  max mem: 27290
+Epoch: [15]  [ 848/2124]  eta: 1:03:01  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.275746  data: 0.000422  max mem: 27290
+Epoch: [15]  [1060/2124]  eta: 0:53:25  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.242516  data: 0.000360  max mem: 27290
+Epoch: [15]  [1272/2124]  eta: 0:43:19  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.234472  data: 0.000490  max mem: 27290
+Epoch: [15]  [1484/2124]  eta: 0:32:47  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.236540  data: 0.000296  max mem: 27290
+Epoch: [15]  [1696/2124]  eta: 0:22:05  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.244323  data: 0.000312  max mem: 27290
+Epoch: [15]  [1908/2124]  eta: 0:11:11  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.236607  data: 0.000265  max mem: 27290
+Epoch: [15]  [2120/2124]  eta: 0:00:12  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.969210  data: 0.002604  max mem: 27290
+Epoch: [15]  [2123/2124]  eta: 0:00:03  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.916781  data: 0.002612  max mem: 27290
+Epoch: [15] Total time: 1:49:49 (3.102627 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 15, LR 6.919590327501799e-07, Train_Time 6590.16s, Loss: nan
+----------------------2026-03-10_12_04_27 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [16]  [   0/2124]  eta: 3:02:05  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 5.143705  data: 3.068566  max mem: 27290
+Epoch: [16]  [ 212/2124]  eta: 1:13:35  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.192893  data: 0.000585  max mem: 27290
+Epoch: [16]  [ 424/2124]  eta: 1:18:30  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.157281  data: 0.000515  max mem: 27290
+Epoch: [16]  [ 636/2124]  eta: 1:12:06  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.156534  data: 0.000391  max mem: 27290
+Epoch: [16]  [ 848/2124]  eta: 1:03:00  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.152155  data: 0.000574  max mem: 27290
+Epoch: [16]  [1060/2124]  eta: 0:53:02  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.076560  data: 0.000549  max mem: 27290
+Epoch: [16]  [1272/2124]  eta: 0:42:47  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.119130  data: 0.000440  max mem: 27290
+Epoch: [16]  [1484/2124]  eta: 0:32:13  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.070537  data: 0.000404  max mem: 27290
+Epoch: [16]  [1696/2124]  eta: 0:21:37  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.178472  data: 0.000604  max mem: 27290
+Epoch: [16]  [1908/2124]  eta: 0:10:48  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.838269  data: 0.001216  max mem: 27290
+Epoch: [16]  [2120/2124]  eta: 0:00:11  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.199561  data: 0.003629  max mem: 27290
+Epoch: [16]  [2123/2124]  eta: 0:00:02  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.109751  data: 0.003617  max mem: 27290
+Epoch: [16] Total time: 1:44:25 (2.950061 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 16, LR 6.551994801930989e-07, Train_Time 6266.09s, Loss: nan
+----------------------2026-03-10_13_48_53 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [17]  [   0/2124]  eta: 3:28:13  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 5.882009  data: 2.578058  max mem: 27290
+Epoch: [17]  [ 212/2124]  eta: 1:39:30  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.093915  data: 0.000590  max mem: 27290
+Epoch: [17]  [ 424/2124]  eta: 1:27:56  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.129901  data: 0.000274  max mem: 27290
+Epoch: [17]  [ 636/2124]  eta: 1:16:48  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.113885  data: 0.000423  max mem: 27290
+Epoch: [17]  [ 848/2124]  eta: 1:05:40  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.067482  data: 0.000645  max mem: 27290
+Epoch: [17]  [1060/2124]  eta: 0:54:53  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.122698  data: 0.000487  max mem: 27290
+Epoch: [17]  [1272/2124]  eta: 0:44:00  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.118527  data: 0.000477  max mem: 27290
+Epoch: [17]  [1484/2124]  eta: 0:33:09  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.165905  data: 0.000378  max mem: 27290
+Epoch: [17]  [1696/2124]  eta: 0:21:57  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.017590  data: 0.000590  max mem: 27290
+Epoch: [17]  [1908/2124]  eta: 0:10:46  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.224008  data: 0.000330  max mem: 27290
+Epoch: [17]  [2120/2124]  eta: 0:00:12  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.083719  data: 0.001020  max mem: 27290
+Epoch: [17]  [2123/2124]  eta: 0:00:03  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.979505  data: 0.001033  max mem: 27290
+Epoch: [17] Total time: 1:46:31 (3.009407 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 17, LR 6.174892365640969e-07, Train_Time 6392.19s, Loss: nan
+----------------------2026-03-10_15_35_26 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [18]  [   0/2124]  eta: 3:55:57  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 6.665597  data: 3.499298  max mem: 27290
+Epoch: [18]  [ 212/2124]  eta: 1:38:29  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.018775  data: 0.000506  max mem: 27290
+Epoch: [18]  [ 424/2124]  eta: 1:26:51  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.096068  data: 0.000356  max mem: 27290
+Epoch: [18]  [ 636/2124]  eta: 1:15:33  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.055683  data: 0.000313  max mem: 27290
+Epoch: [18]  [ 848/2124]  eta: 1:04:39  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.074767  data: 0.000354  max mem: 27290
+Epoch: [18]  [1060/2124]  eta: 0:53:54  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.994744  data: 0.000407  max mem: 27290
+Epoch: [18]  [1272/2124]  eta: 0:43:04  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.997371  data: 0.000414  max mem: 27290
+Epoch: [18]  [1484/2124]  eta: 0:32:21  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.058745  data: 0.000354  max mem: 27290
+Epoch: [18]  [1696/2124]  eta: 0:21:17  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.803275  data: 0.001051  max mem: 27290
+Epoch: [18]  [1908/2124]  eta: 0:10:30  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.124699  data: 0.000345  max mem: 27290
+Epoch: [18]  [2120/2124]  eta: 0:00:11  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.041221  data: 0.001061  max mem: 27290
+Epoch: [18]  [2123/2124]  eta: 0:00:02  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.982723  data: 0.001080  max mem: 27290
+Epoch: [18] Total time: 1:43:57 (2.936891 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 18, LR 5.790607980550753e-07, Train_Time 6238.15s, Loss: nan
+----------------------2026-03-10_17_19_24 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [19]  [   0/2124]  eta: 3:23:39  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 5.752975  data: 2.410433  max mem: 27290
+Epoch: [19]  [ 212/2124]  eta: 1:37:52  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.126776  data: 0.000333  max mem: 27290
+Epoch: [19]  [ 424/2124]  eta: 1:27:15  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.120198  data: 0.000471  max mem: 27290
+Epoch: [19]  [ 636/2124]  eta: 1:16:39  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.162625  data: 0.000332  max mem: 27290
+Epoch: [19]  [ 848/2124]  eta: 1:05:51  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.110810  data: 0.000401  max mem: 27290
+Epoch: [19]  [1060/2124]  eta: 0:54:47  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.051544  data: 0.000360  max mem: 27290
+Epoch: [19]  [1272/2124]  eta: 0:43:49  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.051126  data: 0.000322  max mem: 27290
+Epoch: [19]  [1484/2124]  eta: 0:32:48  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.152542  data: 0.000413  max mem: 27290
+Epoch: [19]  [1696/2124]  eta: 0:21:04  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.110004  data: 0.000480  max mem: 27290
+Epoch: [19]  [1908/2124]  eta: 0:10:42  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.160969  data: 0.000364  max mem: 27290
+Epoch: [19]  [2120/2124]  eta: 0:00:11  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.199517  data: 0.000960  max mem: 27290
+Epoch: [19]  [2123/2124]  eta: 0:00:02  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.110370  data: 0.000946  max mem: 27290
+Epoch: [19] Total time: 1:45:47 (2.988431 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 19, LR 5.401510887681948e-07, Train_Time 6347.62s, Loss: nan
+----------------------2026-03-10_19_05_12 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [20]  [   0/2124]  eta: 3:00:41  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 5.104507  data: 1.953915  max mem: 27290
+Epoch: [20]  [ 212/2124]  eta: 1:37:26  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.016239  data: 0.000383  max mem: 27290
+Epoch: [20]  [ 424/2124]  eta: 1:25:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.840461  data: 0.000698  max mem: 27290
+Epoch: [20]  [ 636/2124]  eta: 1:14:48  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.016706  data: 0.000390  max mem: 27290
+Epoch: [20]  [ 848/2124]  eta: 1:04:07  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.049073  data: 0.000547  max mem: 27290
+Epoch: [20]  [1060/2124]  eta: 0:53:22  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.045336  data: 0.000410  max mem: 27290
+Epoch: [20]  [1272/2124]  eta: 0:42:43  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 3.003268  data: 0.000327  max mem: 27290
+Epoch: [20]  [1484/2124]  eta: 0:31:38  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 1.992031  data: 0.000549  max mem: 27290
+Epoch: [20]  [1696/2124]  eta: 0:20:34  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.922828  data: 0.000385  max mem: 27290
+Epoch: [20]  [1908/2124]  eta: 0:10:26  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.977458  data: 0.000537  max mem: 27290
+Epoch: [20]  [2120/2124]  eta: 0:00:11  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.960939  data: 0.003188  max mem: 27290
+Epoch: [20]  [2123/2124]  eta: 0:00:02  train_loss: nan (nan)  lr: 0.000001 (0.000001)  time: 2.916638  data: 0.003143  max mem: 27290
+Epoch: [20] Total time: 1:43:02 (2.910952 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000001 (0.000001)
+Epoch 20, LR 5.01e-07, Train_Time 6183.07s, Loss: nan
+----------------------2026-03-10_20_48_15 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [21]  [   0/2124]  eta: 4:15:27  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 7.216180  data: 4.021675  max mem: 27290
+Epoch: [21]  [ 212/2124]  eta: 1:35:57  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.022690  data: 0.000413  max mem: 27290
+Epoch: [21]  [ 424/2124]  eta: 1:25:06  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.024248  data: 0.000553  max mem: 27290
+Epoch: [21]  [ 636/2124]  eta: 1:14:16  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 2.966513  data: 0.000655  max mem: 27290
+Epoch: [21]  [ 848/2124]  eta: 1:03:49  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.002217  data: 0.000498  max mem: 27290
+Epoch: [21]  [1060/2124]  eta: 0:53:02  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 2.988077  data: 0.000382  max mem: 27290
+Epoch: [21]  [1272/2124]  eta: 0:42:32  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.019226  data: 0.000476  max mem: 27290
+Epoch: [21]  [1484/2124]  eta: 0:31:57  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 2.946706  data: 0.000460  max mem: 27290
+Epoch: [21]  [1696/2124]  eta: 0:20:21  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.933816  data: 0.000713  max mem: 27290
+Epoch: [21]  [1908/2124]  eta: 0:09:46  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.617100  data: 0.000271  max mem: 27290
+Epoch: [21]  [2120/2124]  eta: 0:00:10  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.605403  data: 0.001126  max mem: 27290
+Epoch: [21]  [2123/2124]  eta: 0:00:02  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.559642  data: 0.001132  max mem: 27290
+Epoch: [21] Total time: 1:32:17 (2.607262 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 21, LR 4.6184891123180543e-07, Train_Time 5537.88s, Loss: nan
+----------------------2026-03-10_22_20_33 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [22]  [   0/2124]  eta: 2:17:58  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.897758  data: 2.205029  max mem: 27290
+Epoch: [22]  [ 212/2124]  eta: 0:51:40  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.595200  data: 0.000285  max mem: 27290
+Epoch: [22]  [ 424/2124]  eta: 0:45:46  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.593907  data: 0.000247  max mem: 27290
+Epoch: [22]  [ 636/2124]  eta: 0:39:58  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.591270  data: 0.000267  max mem: 27290
+Epoch: [22]  [ 848/2124]  eta: 0:34:12  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.599310  data: 0.000281  max mem: 27290
+Epoch: [22]  [1060/2124]  eta: 0:28:32  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.614812  data: 0.000319  max mem: 27290
+Epoch: [22]  [1272/2124]  eta: 0:22:52  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.608331  data: 0.000252  max mem: 27290
+Epoch: [22]  [1484/2124]  eta: 0:17:10  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.602571  data: 0.000232  max mem: 27290
+Epoch: [22]  [1696/2124]  eta: 0:11:29  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.611689  data: 0.000304  max mem: 27290
+Epoch: [22]  [1908/2124]  eta: 0:05:47  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.606527  data: 0.000268  max mem: 27290
+Epoch: [22]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.599559  data: 0.000939  max mem: 27290
+Epoch: [22]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.553015  data: 0.000962  max mem: 27290
+Epoch: [22] Total time: 0:56:58 (1.609690 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 22, LR 4.2293920194492493e-07, Train_Time 3419.03s, Loss: nan
+----------------------2026-03-10_23_17_32 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [23]  [   0/2124]  eta: 1:44:08  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 2.942059  data: 1.181324  max mem: 27290
+Epoch: [23]  [ 212/2124]  eta: 0:51:16  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.623850  data: 0.000261  max mem: 27290
+Epoch: [23]  [ 424/2124]  eta: 0:45:30  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.600678  data: 0.000235  max mem: 27290
+Epoch: [23]  [ 636/2124]  eta: 0:39:48  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.594452  data: 0.000223  max mem: 27290
+Epoch: [23]  [ 848/2124]  eta: 0:34:08  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.628391  data: 0.000290  max mem: 27290
+Epoch: [23]  [1060/2124]  eta: 0:28:28  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.603355  data: 0.000289  max mem: 27290
+Epoch: [23]  [1272/2124]  eta: 0:22:48  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.596370  data: 0.000317  max mem: 27290
+Epoch: [23]  [1484/2124]  eta: 0:17:07  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.599758  data: 0.000323  max mem: 27290
+Epoch: [23]  [1696/2124]  eta: 0:11:27  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.603690  data: 0.000265  max mem: 27290
+Epoch: [23]  [1908/2124]  eta: 0:05:47  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.613551  data: 0.000319  max mem: 27290
+Epoch: [23]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.600698  data: 0.000697  max mem: 27290
+Epoch: [23]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.550757  data: 0.000694  max mem: 27290
+Epoch: [23] Total time: 0:56:51 (1.606361 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 23, LR 3.8451076343590323e-07, Train_Time 3411.96s, Loss: nan
+----------------------2026-03-11_00_14_24 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [24]  [   0/2124]  eta: 1:47:52  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.047204  data: 1.216031  max mem: 27290
+Epoch: [24]  [ 212/2124]  eta: 0:51:19  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.593713  data: 0.000251  max mem: 27290
+Epoch: [24]  [ 424/2124]  eta: 0:45:29  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.596308  data: 0.000323  max mem: 27290
+Epoch: [24]  [ 636/2124]  eta: 0:39:46  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.597891  data: 0.000327  max mem: 27290
+Epoch: [24]  [ 848/2124]  eta: 0:34:05  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.609428  data: 0.000274  max mem: 27290
+Epoch: [24]  [1060/2124]  eta: 0:28:23  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.584967  data: 0.000261  max mem: 27290
+Epoch: [24]  [1272/2124]  eta: 0:22:43  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.605278  data: 0.000304  max mem: 27290
+Epoch: [24]  [1484/2124]  eta: 0:17:04  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.602116  data: 0.000298  max mem: 27290
+Epoch: [24]  [1696/2124]  eta: 0:11:24  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.593580  data: 0.000246  max mem: 27290
+Epoch: [24]  [1908/2124]  eta: 0:05:45  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.600434  data: 0.000243  max mem: 27290
+Epoch: [24]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.611054  data: 0.000909  max mem: 27290
+Epoch: [24]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.566694  data: 0.000890  max mem: 27290
+Epoch: [24] Total time: 0:56:37 (1.599618 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 24, LR 3.4680051980690125e-07, Train_Time 3397.65s, Loss: nan
+----------------------2026-03-11_01_11_02 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [25]  [   0/2124]  eta: 1:48:11  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.056120  data: 1.374751  max mem: 27290
+Epoch: [25]  [ 212/2124]  eta: 0:50:59  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.589444  data: 0.000222  max mem: 27290
+Epoch: [25]  [ 424/2124]  eta: 0:45:11  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.593167  data: 0.000269  max mem: 27290
+Epoch: [25]  [ 636/2124]  eta: 0:39:32  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.598381  data: 0.000268  max mem: 27290
+Epoch: [25]  [ 848/2124]  eta: 0:33:54  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.605182  data: 0.000316  max mem: 27290
+Epoch: [25]  [1060/2124]  eta: 0:28:17  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.594573  data: 0.000248  max mem: 27290
+Epoch: [25]  [1272/2124]  eta: 0:22:39  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.611172  data: 0.000280  max mem: 27290
+Epoch: [25]  [1484/2124]  eta: 0:17:02  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.600492  data: 0.000252  max mem: 27290
+Epoch: [25]  [1696/2124]  eta: 0:11:24  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.601834  data: 0.000323  max mem: 27290
+Epoch: [25]  [1908/2124]  eta: 0:05:45  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.606994  data: 0.000297  max mem: 27290
+Epoch: [25]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.586438  data: 0.000628  max mem: 27290
+Epoch: [25]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.537312  data: 0.000608  max mem: 27290
+Epoch: [25] Total time: 0:56:37 (1.599748 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 25, LR 3.1004096724982025e-07, Train_Time 3397.92s, Loss: nan
+----------------------2026-03-11_02_07_40 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [26]  [   0/2124]  eta: 1:47:43  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.042998  data: 1.361285  max mem: 27290
+Epoch: [26]  [ 212/2124]  eta: 0:51:23  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.612464  data: 0.000283  max mem: 27290
+Epoch: [26]  [ 424/2124]  eta: 0:45:35  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.602675  data: 0.000297  max mem: 27290
+Epoch: [26]  [ 636/2124]  eta: 0:39:52  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.597833  data: 0.000242  max mem: 27290
+Epoch: [26]  [ 848/2124]  eta: 0:34:10  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.605303  data: 0.000267  max mem: 27290
+Epoch: [26]  [1060/2124]  eta: 0:28:30  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.600784  data: 0.000310  max mem: 27290
+Epoch: [26]  [1272/2124]  eta: 0:22:49  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.596238  data: 0.000265  max mem: 27290
+Epoch: [26]  [1484/2124]  eta: 0:17:08  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.598939  data: 0.000261  max mem: 27290
+Epoch: [26]  [1696/2124]  eta: 0:11:27  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.606930  data: 0.000304  max mem: 27290
+Epoch: [26]  [1908/2124]  eta: 0:05:47  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.612823  data: 0.000374  max mem: 27290
+Epoch: [26]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.609351  data: 0.001033  max mem: 27290
+Epoch: [26]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.566599  data: 0.001032  max mem: 27290
+Epoch: [26] Total time: 0:56:53 (1.607302 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 26, LR 2.7445874062996616e-07, Train_Time 3413.97s, Loss: nan
+----------------------2026-03-11_03_04_34 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [27]  [   0/2124]  eta: 1:49:52  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.103977  data: 1.399143  max mem: 27290
+Epoch: [27]  [ 212/2124]  eta: 0:51:13  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.608070  data: 0.000274  max mem: 27290
+Epoch: [27]  [ 424/2124]  eta: 0:45:26  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.608187  data: 0.000278  max mem: 27290
+Epoch: [27]  [ 636/2124]  eta: 0:39:45  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.602231  data: 0.000235  max mem: 27290
+Epoch: [27]  [ 848/2124]  eta: 0:34:05  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.606631  data: 0.000337  max mem: 27290
+Epoch: [27]  [1060/2124]  eta: 0:28:25  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.591291  data: 0.000298  max mem: 27290
+Epoch: [27]  [1272/2124]  eta: 0:22:46  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.595787  data: 0.000293  max mem: 27290
+Epoch: [27]  [1484/2124]  eta: 0:17:06  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.602157  data: 0.000298  max mem: 27290
+Epoch: [27]  [1696/2124]  eta: 0:11:26  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.602000  data: 0.000265  max mem: 27290
+Epoch: [27]  [1908/2124]  eta: 0:05:46  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.615870  data: 0.000282  max mem: 27290
+Epoch: [27]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.614668  data: 0.000861  max mem: 27290
+Epoch: [27]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.565385  data: 0.000844  max mem: 27290
+Epoch: [27] Total time: 0:56:47 (1.604416 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 27, LR 2.4027321620674156e-07, Train_Time 3407.84s, Loss: nan
+----------------------2026-03-11_04_01_22 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [28]  [   0/2124]  eta: 1:55:57  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.275629  data: 1.577984  max mem: 27290
+Epoch: [28]  [ 212/2124]  eta: 0:51:25  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.607787  data: 0.000305  max mem: 27290
+Epoch: [28]  [ 424/2124]  eta: 0:45:32  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.612112  data: 0.000264  max mem: 27290
+Epoch: [28]  [ 636/2124]  eta: 0:39:49  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.607569  data: 0.000330  max mem: 27290
+Epoch: [28]  [ 848/2124]  eta: 0:34:09  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.607092  data: 0.000307  max mem: 27290
+Epoch: [28]  [1060/2124]  eta: 0:28:25  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.572631  data: 0.000271  max mem: 27290
+Epoch: [28]  [1272/2124]  eta: 0:22:43  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.579662  data: 0.000210  max mem: 27290
+Epoch: [28]  [1484/2124]  eta: 0:17:02  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.580328  data: 0.000261  max mem: 27290
+Epoch: [28]  [1696/2124]  eta: 0:11:23  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.582295  data: 0.000217  max mem: 27290
+Epoch: [28]  [1908/2124]  eta: 0:05:44  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.587339  data: 0.000250  max mem: 27290
+Epoch: [28]  [2120/2124]  eta: 0:00:06  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.585838  data: 0.000926  max mem: 27290
+Epoch: [28]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.536275  data: 0.000929  max mem: 27290
+Epoch: [28] Total time: 0:56:27 (1.594703 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 28, LR 2.0769515910605597e-07, Train_Time 3387.20s, Loss: nan
+----------------------2026-03-11_04_57_50 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [29]  [   0/2124]  eta: 1:46:12  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.000383  data: 1.323174  max mem: 27290
+Epoch: [29]  [ 212/2124]  eta: 0:50:42  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.573697  data: 0.000269  max mem: 27290
+Epoch: [29]  [ 424/2124]  eta: 0:45:00  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.589265  data: 0.000272  max mem: 27290
+Epoch: [29]  [ 636/2124]  eta: 0:39:22  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.594742  data: 0.000283  max mem: 27290
+Epoch: [29]  [ 848/2124]  eta: 0:33:45  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.584875  data: 0.000278  max mem: 27290
+Epoch: [29]  [1060/2124]  eta: 0:28:09  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.590341  data: 0.000252  max mem: 27290
+Epoch: [29]  [1272/2124]  eta: 0:22:33  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.611840  data: 0.000430  max mem: 27290
+Epoch: [29]  [1484/2124]  eta: 0:16:57  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.586011  data: 0.000295  max mem: 27290
+Epoch: [29]  [1696/2124]  eta: 0:11:30  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.259900  data: 0.000439  max mem: 27290
+Epoch: [29]  [1908/2124]  eta: 0:06:27  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.284956  data: 0.000320  max mem: 27290
+Epoch: [29]  [2120/2124]  eta: 0:00:07  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.151253  data: 0.001364  max mem: 27290
+Epoch: [29]  [2123/2124]  eta: 0:00:01  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.065187  data: 0.001365  max mem: 27290
+Epoch: [29] Total time: 1:08:42 (1.941116 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 29, LR 1.769254238832384e-07, Train_Time 4123.20s, Loss: nan
+----------------------2026-03-11_06_06_33 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [30]  [   0/2124]  eta: 3:38:48  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.181250  data: 2.543681  max mem: 27290
+Epoch: [30]  [ 212/2124]  eta: 1:41:27  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.217169  data: 0.000388  max mem: 27290
+Epoch: [30]  [ 424/2124]  eta: 1:29:59  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.214326  data: 0.000402  max mem: 27290
+Epoch: [30]  [ 636/2124]  eta: 1:18:46  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.205856  data: 0.000457  max mem: 27290
+Epoch: [30]  [ 848/2124]  eta: 1:07:24  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.181222  data: 0.000342  max mem: 27290
+Epoch: [30]  [1060/2124]  eta: 0:56:08  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.221094  data: 0.000519  max mem: 27290
+Epoch: [30]  [1272/2124]  eta: 0:44:44  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 2.206359  data: 0.000548  max mem: 27290
+Epoch: [30]  [1484/2124]  eta: 0:31:57  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.144287  data: 0.000442  max mem: 27290
+Epoch: [30]  [1696/2124]  eta: 0:21:30  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.225050  data: 0.000376  max mem: 27290
+Epoch: [30]  [1908/2124]  eta: 0:10:54  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.203381  data: 0.000511  max mem: 27290
+Epoch: [30]  [2120/2124]  eta: 0:00:12  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.173652  data: 0.004483  max mem: 27290
+Epoch: [30]  [2123/2124]  eta: 0:00:03  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.087090  data: 0.004486  max mem: 27290
+Epoch: [30] Total time: 1:47:52 (3.047511 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 30, LR 1.4815371618791282e-07, Train_Time 6473.10s, Loss: nan
+----------------------2026-03-11_07_54_26 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [31]  [   0/2124]  eta: 4:40:18  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 7.918271  data: 4.538180  max mem: 27290
+Epoch: [31]  [ 212/2124]  eta: 1:41:32  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.020941  data: 0.000593  max mem: 27290
+Epoch: [31]  [ 424/2124]  eta: 1:30:15  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.159040  data: 0.000407  max mem: 27290
+Epoch: [31]  [ 636/2124]  eta: 1:19:06  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.165210  data: 0.000428  max mem: 27290
+Epoch: [31]  [ 848/2124]  eta: 1:07:44  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.168936  data: 0.000534  max mem: 27290
+Epoch: [31]  [1060/2124]  eta: 0:56:34  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.239996  data: 0.000467  max mem: 27290
+Epoch: [31]  [1272/2124]  eta: 0:42:39  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 2.351047  data: 0.000885  max mem: 27290
+Epoch: [31]  [1484/2124]  eta: 0:32:19  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.178047  data: 0.000566  max mem: 27290
+Epoch: [31]  [1696/2124]  eta: 0:21:44  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.256078  data: 0.000543  max mem: 27290
+Epoch: [31]  [1908/2124]  eta: 0:11:00  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.114094  data: 0.000447  max mem: 27290
+Epoch: [31]  [2120/2124]  eta: 0:00:12  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.203228  data: 0.003672  max mem: 27290
+Epoch: [31]  [2123/2124]  eta: 0:00:03  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.129607  data: 0.003683  max mem: 27290
+Epoch: [31] Total time: 1:48:48 (3.073622 s / it)
+Averaged stats: train_loss: nan (nan)  lr: 0.000000 (0.000000)
+Epoch 31, LR 1.2155742316558457e-07, Train_Time 6528.61s, Loss: nan
+----------------------2026-03-11_09_43_15 on train set----------------------
+ ma: 0.5000, Acc: 0.0000, F1: 0.0000
+Epoch: [32]  [   0/2124]  eta: 3:42:46  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 6.293087  data: 2.950293  max mem: 27290
+Epoch: [32]  [ 212/2124]  eta: 1:40:30  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.138650  data: 0.000500  max mem: 27290
+Epoch: [32]  [ 424/2124]  eta: 1:30:43  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.196712  data: 0.000420  max mem: 27290
+Epoch: [32]  [ 636/2124]  eta: 1:19:09  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.227074  data: 0.000419  max mem: 27290
+Epoch: [32]  [ 848/2124]  eta: 1:07:57  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.188449  data: 0.000314  max mem: 27290
+Epoch: [32]  [1060/2124]  eta: 0:52:31  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 1.962087  data: 0.001386  max mem: 27290
+Epoch: [32]  [1272/2124]  eta: 0:42:33  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.165197  data: 0.000323  max mem: 27290

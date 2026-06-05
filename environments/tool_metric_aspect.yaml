@@ -1,0 +1,41 @@
+name: tool_metric_aspect
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - cudatoolkit=11.8
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.8
+  - pip
+  - pip:
+    - pytorch-fid
+    - transformers
+    - openai-clip
+    - easydict
+    - timm
+    - scipy
+    - scikit-image
+    - scikit-learn
+    - Pillow
+    - numpy
+    - pandas
+    - matplotlib
+    - tqdm
+    - ftfy
+    - packaging
+    - requests
+    - opencv-python-headless
+    - typing_extensions
+    - pytest
+    - joblib
+    - cloudpickle
+
+# Notes:
+# - This environment is based on /mnt/rhome/paa/environment/metricsAspect (local environment on the host).
+# - Some packages (PyTorch/CUDA) may need to be adjusted to match your GPU and CUDA version.
+# - Helper repos (CLIP, cmmd-pytorch, pytorch-fid, FD-DINOv2) are fetched into tools/metricAspect/third_party/ by running prepareGithubs.sh

@@ -1,0 +1,24 @@
+name: testing
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+
+  # Testing
+  - pytest
+  - pytest-cov
+  - pytest-xdist
+
+  # Core deps típicas del repo / tests (CSV/JSONL, vectores, imágenes, excels)
+  - numpy
+  - pandas
+  - pillow
+  - openpyxl
+  - xlsxwriter
+  - scipy
+  - scikit-learn
+
+  # Útiles (opcional pero práctico)
+  - tqdm

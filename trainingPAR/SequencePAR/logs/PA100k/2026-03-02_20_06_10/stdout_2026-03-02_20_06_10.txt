@@ -1,0 +1,48 @@
+2026-03-02_20_06_10
+OrderedDict([('dataset', 'PA100k'),
+             ('batchsize', 32),
+             ('epoch', 50),
+             ('height', 224),
+             ('width', 224),
+             ('lr', 1e-06),
+             ('weight_decay', 0.0001),
+             ('optim', 'AdamW'),
+             ('train_split', 'trainval'),
+             ('valid_split', 'test'),
+             ('gpus', '6'),
+             ('redirector', True),
+             ('epoch_save_ckpt', 1),
+             ('check_point', False),
+             ('dir', None),
+             ('depth', 6),
+             ('beam_size', 1),
+             ('pkl_path', './model/peta.pkl'),
+             ('datasets_path', '/wangxiao/jjd/PETAPad/Pad_datasets'),
+             ('model_path', './model/model'),
+             ('use_class_weight', False),
+             ('syn_use', True),
+             ('synthetic_path',
+              '/mnt/rhome/paa/pedestrian/dataAugmentationMethods/LORA/diffusers/examples/text_to_image/pa100k_lora_32_with_transform_256_192_loss_train_model_21_reb_forlabeling_por2/'),
+             ('syn_pseudolabels_csv', 'generated.csv'),
+             ('seed', 42),
+             ('syn_use_frac', 1.0),
+             ('syn_img_subdir', 'generatedImgs/')])
+------------------------------------------------------------
+train set: PA100k trainval, test set: test
+ this is for zero shot split or RAPv1/PA100k, use all attributes for evaluation
+[SYN-PL] Loading synthetic pseudolabels from CSV: generated.csv
+       img_name  Female  AgeOver60  Age18-60  AgeLess18  Front  Side  ...  LowerStripe  LowerPattern  LongCoat  Trousers  Shorts  Skirt&Dress  boots
+0  img-0_1.png       0         -1         0         -1      0    -1  ...           -1            -1        -1        -1      -1            0     -1
+1  img-1_1.png       1         -1         1         -1     -1    -1  ...           -1            -1        -1         1      -1           -1     -1
+2  img-2_1.png      -1         -1         1         -1     -1     1  ...           -1            -1        -1         1      -1           -1     -1
+3  img-3_1.png      -1         -1         0         -1     -1    -1  ...           -1            -1        -1         0      -1           -1     -1
+4  img-4_1.png      -1         -1         0         -1     -1     0  ...           -1            -1        -1         0      -1           -1     -1
+
+[5 rows x 27 columns]
+Processing synthetic pseudolabels CSV entries... dfPL length:160000
+lenght syn vector 26
+[SYN-PL] Merged synthetic (pseudolabels CSV): +160000 => total 250000
+ this is for zero shot split or RAPv1/PA100k, use all attributes for evaluation
+trainval set: 250000, test set: 10000, attr_num : 26
+max_length 27, vocab_size 29, decoder depth 6
+The optimizer used AdamW

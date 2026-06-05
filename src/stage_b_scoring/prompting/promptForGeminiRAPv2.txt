@@ -1,0 +1,48 @@
+You are an expert in Vision-Language Models (VLMs) and image evaluation using metrics like BLIPScore. I need you to create a static dictionary of "probe-prompts" for a pedestrian attribute recognition dataset. 
+
+I will use these fixed prompts in my pipeline to evaluate synthetically generated images. By calculating the BLIPScore for each prompt, my code will detect if an attribute was successfully retained, added, or removed compared to the original image.
+
+### Your Task
+For every raw attribute name in the list provided below, write a highly descriptive, natural language "positive" prompt optimized for BLIPScore. 
+
+**Rules:**
+1. Formulate the prompt clearly, usually starting with "A photo of a pedestrian..." or "A pedestrian...".
+2. Be precise. For example, for "upperBodyRed", write "A photo of a pedestrian wearing a red upper body garment or shirt."
+3. Keep it focused ONLY on that specific attribute to avoid confusing the VLM.
+4. Output the result strictly as a valid JSON dictionary where the key is the exact original attribute name, and the value is your generated probe-prompt.
+
+### Input Attributes (RAPv2):
+['Femal', 'AgeLess16', 'Age17-30', 'Age31-45', 'Age46-60', 'BodyFat', 'BodyNormal', 'BodyThin', 'Customer', 'Employee', 'hs-BaldHead', 'hs-LongHair', 'hs-BlackHair', 'hs-Hat', 'hs-Glasses', 'ub-Shirt', 'ub-Sweater', 'ub-Vest', 'ub-TShirt', 'ub-Cotton', 'ub-Jacket', 'ub-SuitUp', 'ub-Tight', 'ub-ShortSleeve', 'lb-LongTrousers', 'lb-Skirt', 'lb-ShortSkirt', 'lb-Dress', 'lb-Jeans', 'lb-TightTrousers', 'shoes-Leather', 'shoes-Sports', 'shoes-Boots', 'shoes-Cloth', 'shoes-Casual', 'attachment-Backpack', 'attachment-ShoulderBag', 'attachment-HandBag', 'attachment-Box', 'attachment-PlasticBag', 'attachment-PaperBag', 'attachment-HandTrunk', 'attachment-Other', 'action-Calling', 'action-Talking', 'action-Gathering', 'action-Holding', 'action-Pushing', 'action-Pulling', 'action-CarryingByArm', 'action-CarryingByHand', 'hs-Muffler', 'hs-Mask', 'attachment-WaistBag']
+
+### Expected Output Format:
+```json
+{
+  "Femal": "A photo of a female pedestrian.",
+  "AgeLess16": "A photo of a pedestrian who is a child or teenager under 16 years old.",
+  "attachment-Backpack": "A photo of a pedestrian carrying a backpack on their back."
+}
+
+# NEGATIVES
+You are an expert in Vision-Language Models (VLMs) and image evaluation using metrics like BLIPScore. I need you to create a static dictionary of "negative probe-prompts" for a pedestrian attribute recognition dataset. 
+
+I will use these fixed prompts in my pipeline to evaluate synthetically generated images. By calculating the BLIPScore for each prompt, my code will verify if an attribute was successfully REMOVED or is ABSENT in the image.
+
+### Your Task
+For every raw attribute name in the list provided below, write a highly descriptive, natural language "negative" prompt optimized for BLIPScore. The goal is to strongly describe the ABSENCE of that attribute.
+
+**Rules:**
+1. Formulate the prompt clearly to indicate absence, using phrasing like "A photo of a pedestrian without..." or "A photo of a pedestrian who is not...".
+2. If the attribute is strictly binary (e.g., "Femal"), use the direct opposite.
+3. Be precise. For example, for "hs-Hat", write "A photo of a pedestrian with a bare head, wearing no hat."
+4. Output the result strictly as a valid JSON dictionary where the key is the exact original attribute name, and the value is your generated negative probe-prompt.
+
+### Input Attributes (RAPv2):
+['Femal', 'AgeLess16', 'Age17-30', 'Age31-45', 'Age46-60', 'BodyFat', 'BodyNormal', 'BodyThin', 'Customer', 'Employee', 'hs-BaldHead', 'hs-LongHair', 'hs-BlackHair', 'hs-Hat', 'hs-Glasses', 'ub-Shirt', 'ub-Sweater', 'ub-Vest', 'ub-TShirt', 'ub-Cotton', 'ub-Jacket', 'ub-SuitUp', 'ub-Tight', 'ub-ShortSleeve', 'lb-LongTrousers', 'lb-Skirt', 'lb-ShortSkirt', 'lb-Dress', 'lb-Jeans', 'lb-TightTrousers', 'shoes-Leather', 'shoes-Sports', 'shoes-Boots', 'shoes-Cloth', 'shoes-Casual', 'attachment-Backpack', 'attachment-ShoulderBag', 'attachment-HandBag', 'attachment-Box', 'attachment-PlasticBag', 'attachment-PaperBag', 'attachment-HandTrunk', 'attachment-Other', 'action-Calling', 'action-Talking', 'action-Gathering', 'action-Holding', 'action-Pushing', 'action-Pulling', 'action-CarryingByArm', 'action-CarryingByHand', 'hs-Muffler', 'hs-Mask', 'attachment-WaistBag']
+
+### Expected Output Format:
+```json
+{
+  "Femal": "A photo of a male pedestrian.",
+  "hs-Hat": "A photo of a pedestrian without a hat.",
+  "attachment-Backpack": "A photo of a pedestrian who is not carrying a backpack."
+}

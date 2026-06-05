@@ -1,0 +1,23 @@
+You are an expert in Vision-Language Models (VLMs) and image evaluation using metrics like BLIPScore. I need you to create a static dictionary of "probe-prompts" for a pedestrian attribute recognition dataset. 
+
+I will use these fixed prompts in my pipeline to evaluate synthetically generated images. By calculating the BLIPScore for each prompt, my code will detect if an attribute was successfully retained, added, or removed compared to the original image.
+
+### Your Task
+For every raw attribute name in the list provided below, write a highly descriptive, natural language "positive" prompt optimized for BLIPScore. 
+
+**Rules:**
+1. Formulate the prompt clearly, usually starting with "A photo of a pedestrian..." or "A pedestrian...".
+2. Be precise. For example, for "upperBodyRed", write "A photo of a pedestrian wearing a red upper body garment or shirt."
+3. Keep it focused ONLY on that specific attribute to avoid confusing the VLM.
+4. Output the result strictly as a valid JSON dictionary where the key is the exact original attribute name, and the value is your generated probe-prompt.
+
+### Input Attributes:
+[PEGAR AQUÍ TU LISTA DE ATRIBUTOS, ej: ['Female', 'AgeLess16', 'attach-Backpack', 'ub-ShortSleeve', ...]]
+
+### Expected Output Format:
+```json
+{
+  "Female": "A photo of a female pedestrian.",
+  "AgeLess16": "A photo of a pedestrian who is a child or teenager under 16 years old.",
+  "attach-Backpack": "A photo of a pedestrian carrying a backpack on their back."
+}

@@ -1,0 +1,45 @@
+2026-03-11_10_52_39
+OrderedDict([('dataset', 'RAPV2'),
+             ('batchsize', 32),
+             ('epoch', 40),
+             ('height', 224),
+             ('width', 224),
+             ('lr', 1e-06),
+             ('weight_decay', 0.0001),
+             ('optim', 'AdamW'),
+             ('train_split', 'trainval'),
+             ('valid_split', 'test'),
+             ('gpus', '6'),
+             ('redirector', True),
+             ('epoch_save_ckpt', 1),
+             ('check_point', False),
+             ('dir', None),
+             ('depth', 6),
+             ('beam_size', 1),
+             ('pkl_path', './model/peta.pkl'),
+             ('datasets_path', '/wangxiao/jjd/PETAPad/Pad_datasets'),
+             ('model_path', './model/model'),
+             ('use_class_weight', False),
+             ('syn_use', False),
+             ('synthetic_path', None),
+             ('syn_pseudolabels_csv', None),
+             ('seed', 42),
+             ('syn_use_frac', 1.0),
+             ('syn_img_subdir', None)])
+------------------------------------------------------------
+train set: RAPV2 trainval, test set: test
+(84928, 54)
+54
+min/max: 0 53
+tail: [44, 45, 46, 47, 48, 49, 50, 51, 52, 53]
+shape: (84928, 54)
+(84928, 54)
+54
+min/max: 0 53
+tail: [44, 45, 46, 47, 48, 49, 50, 51, 52, 53]
+shape: (84928, 54)
+trainval set: 67943, test set: 16985, attr_num : 54
+max_length 55, vocab_size 57, decoder depth 6
+The optimizer used AdamW
+Epoch: [1]  [   0/2124]  eta: 1 day, 2:59:00  train_loss: 4.273983 (4.273983)  lr: 0.000000 (0.000000)  time: 45.734680  data: 2.242374  max mem: 21865
+Epoch: [1]  [ 212/2124]  eta: 1:45:47  train_loss: nan (nan)  lr: 0.000000 (0.000000)  time: 3.189006  data: 0.000312  max mem: 27244

@@ -1,0 +1,41 @@
+name: stage_a
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - cudatoolkit=11.8
+  # Install PyTorch from the official conda channels so the CUDA runtime matches
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=11.8
+  - pip
+  - pip:
+    # torch / torchvision / torchaudio are installed via conda to ensure CUDA compatibility
+    # Other python packages installed via pip:
+    - diffusers==0.34.0
+    - transformers==4.54.1
+    - accelerate==1.9.0
+    - peft==0.17.0
+    - datasets==4.0.0
+    - huggingface-hub==0.34.3
+    - tokenizers==0.21.4
+    - numpy==2.1.2
+    - pandas==2.3.1
+    - opencv-python-headless==4.12.0.88
+    - Pillow==11.0.0
+    - scikit-learn==1.7.1
+    - scipy==1.15.3
+    - matplotlib==3.10.5
+    - tqdm==4.67.1
+    - pyyaml
+    - requests==2.32.4
+    - cloudpickle==3.1.1
+    - packaging
+    - easydict
+    - filelock
+    - mlflow
+      # safetensors already pinned above

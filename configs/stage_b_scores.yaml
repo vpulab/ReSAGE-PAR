@@ -1,0 +1,28 @@
+# Stage B: Scoring - Get Scores for Real Dataset
+# Usage: python -m src.stage_b_scoring.run_stage_b --config configs/stage_b_scores.yaml
+
+# Flags
+getScores: true
+getScoresSyn: false
+
+# Dataset and scoring configuration
+dataset: "RAPzs"
+score_name: "blip"
+prompting: "fixed-rule"
+strategy: "identity"
+n_probes: 1
+
+# LoRA directory (base directory where Stage B outputs are stored)
+lora_dir: "rapzs_lora_4_with_transform_256_192_loss_train_model_21"
+
+# Dataset custom paths (optional - uncomment to override defaults)
+# path_dataset: "/custom/dataset/images/"
+# path_gt: "/custom/dataset_all.pkl"
+# path_gt_img: "/custom/images/"
+
+# Device configuration (None = auto-detect)
+# device: null
+
+# Optional: Synthetic data paths (only needed for getScoresSyn)
+# syn_csv_path: "generated.csv"
+# syn_img_folder: "genImg/"

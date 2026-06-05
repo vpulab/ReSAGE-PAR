@@ -1,0 +1,60 @@
+2026-03-03_09_17_56
+OrderedDict([('dataset', 'PETA'),
+             ('batchsize', 32),
+             ('epoch', 50),
+             ('height', 224),
+             ('width', 224),
+             ('lr', 1e-06),
+             ('weight_decay', 0.0001),
+             ('optim', 'AdamW'),
+             ('train_split', 'trainval'),
+             ('valid_split', 'test'),
+             ('gpus', '6'),
+             ('redirector', True),
+             ('epoch_save_ckpt', 1),
+             ('check_point', False),
+             ('dir', None),
+             ('depth', 6),
+             ('beam_size', 1),
+             ('pkl_path', './model/peta.pkl'),
+             ('datasets_path', '/wangxiao/jjd/PETAPad/Pad_datasets'),
+             ('model_path', './model/model'),
+             ('use_class_weight', False),
+             ('syn_use', False),
+             ('synthetic_path', None),
+             ('syn_pseudolabels_csv', None),
+             ('seed', 42),
+             ('syn_use_frac', 1.0),
+             ('syn_img_subdir', None)])
+------------------------------------------------------------
+train set: PETA trainval, test set: test
+(19000, 35)
+35
+min/max: 0 34
+tail: [25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
+shape: (19000, 35)
+(19000, 35)
+35
+min/max: 0 34
+tail: [25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
+shape: (19000, 35)
+trainval set: 11400, test set: 7600, attr_num : 35
+max_length 36, vocab_size 38, decoder depth 6
+The optimizer used AdamW
+Epoch: [1]  [  0/357]  eta: 4:22:25  train_loss: 3.736634 (3.736634)  lr: 0.000000 (0.000000)  time: 44.104382  data: 0.818740  max mem: 20742
+Epoch: [1]  [ 35/357]  eta: 0:14:50  train_loss: 3.538419 (3.598911)  lr: 0.000000 (0.000000)  time: 1.586593  data: 0.000235  max mem: 26092
+Epoch: [1]  [ 70/357]  eta: 0:10:27  train_loss: 3.375175 (3.510056)  lr: 0.000000 (0.000000)  time: 1.595719  data: 0.000254  max mem: 26094
+Epoch: [1]  [105/357]  eta: 0:08:22  train_loss: 3.234158 (3.426756)  lr: 0.000000 (0.000000)  time: 1.597488  data: 0.000213  max mem: 26094
+Epoch: [1]  [140/357]  eta: 0:06:51  train_loss: 3.101413 (3.349695)  lr: 0.000000 (0.000000)  time: 1.612589  data: 0.000247  max mem: 26094
+Epoch: [1]  [175/357]  eta: 0:05:34  train_loss: 2.928534 (3.274967)  lr: 0.000000 (0.000000)  time: 1.602288  data: 0.000208  max mem: 26094
+Epoch: [1]  [210/357]  eta: 0:04:24  train_loss: 2.827109 (3.205587)  lr: 0.000000 (0.000000)  time: 1.602953  data: 0.000233  max mem: 26094
+Epoch: [1]  [245/357]  eta: 0:03:18  train_loss: 2.698142 (3.137968)  lr: 0.000000 (0.000000)  time: 1.605139  data: 0.000284  max mem: 26094
+Epoch: [1]  [280/357]  eta: 0:02:14  train_loss: 2.575019 (3.070505)  lr: 0.000000 (0.000000)  time: 1.598680  data: 0.000265  max mem: 26094
+Epoch: [1]  [315/357]  eta: 0:01:12  train_loss: 2.446425 (3.003048)  lr: 0.000000 (0.000000)  time: 1.607723  data: 0.000255  max mem: 26094
+Epoch: [1]  [350/357]  eta: 0:00:12  train_loss: 2.308463 (2.938818)  lr: 0.000000 (0.000000)  time: 1.607004  data: 0.000293  max mem: 26094
+Epoch: [1]  [356/357]  eta: 0:00:01  train_loss: 2.308463 (2.928295)  lr: 0.000000 (0.000000)  time: 1.561469  data: 0.000244  max mem: 26094
+Epoch: [1] Total time: 0:10:16 (1.727507 s / it)
+Averaged stats: train_loss: 2.308463 (2.928295)  lr: 0.000000 (0.000000)
+Epoch 1, LR 2.08e-07, Train_Time 616.73s, Loss: 2.9283
+----------------------2026-03-03_09_29_11 on train set----------------------
+ ma: 0.5027, Acc: 0.1112, F1: 0.1902

@@ -1,0 +1,65 @@
+2026-03-02_20_59_18
+OrderedDict([('dataset', 'RAPV1'),
+             ('batchsize', 32),
+             ('epoch', 50),
+             ('height', 224),
+             ('width', 224),
+             ('lr', 1e-06),
+             ('weight_decay', 0.0001),
+             ('optim', 'AdamW'),
+             ('train_split', 'trainval'),
+             ('valid_split', 'test'),
+             ('gpus', '6'),
+             ('redirector', True),
+             ('epoch_save_ckpt', 1),
+             ('check_point', False),
+             ('dir', None),
+             ('depth', 6),
+             ('beam_size', 1),
+             ('pkl_path', './model/peta.pkl'),
+             ('datasets_path', '/wangxiao/jjd/PETAPad/Pad_datasets'),
+             ('model_path', './model/model'),
+             ('use_class_weight', False),
+             ('syn_use', True),
+             ('synthetic_path',
+              '/mnt/rhome/paa/pedestrian/dataAugmentationMethods/LORA/diffusers/examples/text_to_image/rapv1_lora_4_with_transform_256_192_loss_train_model_21_reb_forlabeling_por2/'),
+             ('syn_pseudolabels_csv', 'generated.csv'),
+             ('seed', 42),
+             ('syn_use_frac', 1.0),
+             ('syn_img_subdir', 'generatedImgs/')])
+------------------------------------------------------------
+train set: RAPV1 trainval, test set: test
+ this is for zero shot split or RAPv1/PA100k, use all attributes for evaluation
+[SYN-PL] Loading synthetic pseudolabels from CSV: generated.csv
+       img_name  Female  AgeLess16  Age17-30  Age31-45  BodyFat  BodyNormal  BodyThin  ...  shoes-White  shoes-Gray  shoes-Red  shoes-Green  shoes-Blue  shoes-Yellow  shoes-Brown  shoes-Mixture
+0  img-0_1.png      -1         -1        -1         1       -1           1        -1  ...           -1          -1         -1           -1          -1            -1           -1             -1
+1  img-1_1.png      -1         -1         1        -1       -1          -1         1  ...            1          -1         -1           -1          -1            -1           -1             -1
+2  img-2_1.png       1         -1        -1         1       -1           1        -1  ...           -1          -1         -1           -1          -1            -1           -1             -1
+3  img-3_1.png      -1         -1        -1         1       -1           1        -1  ...           -1          -1         -1           -1          -1            -1           -1             -1
+4  img-4_1.png      -1         -1        -1         1       -1          -1        -1  ...           -1          -1         -1           -1          -1            -1           -1             -1
+
+[5 rows x 93 columns]
+Processing synthetic pseudolabels CSV entries... dfPL length:66536
+lenght syn vector 51
+[SYN-PL] Merged synthetic (pseudolabels CSV): +66536 => total 99804
+ this is for zero shot split or RAPv1/PA100k, use all attributes for evaluation
+trainval set: 99804, test set: 8317, attr_num : 51
+max_length 52, vocab_size 54, decoder depth 6
+The optimizer used AdamW
+Epoch: [1]  [   0/3119]  eta: 7:40:14  train_loss: 4.264548 (4.264548)  lr: 0.000000 (0.000000)  time: 8.853554  data: 0.757747  max mem: 21718
+Epoch: [1]  [ 311/3119]  eta: 1:18:01  train_loss: 1.946237 (3.047828)  lr: 0.000000 (0.000000)  time: 1.644571  data: 0.000250  max mem: 27074
+Epoch: [1]  [ 622/3119]  eta: 1:08:56  train_loss: 0.974669 (2.186735)  lr: 0.000000 (0.000000)  time: 1.645520  data: 0.000230  max mem: 27074
+Epoch: [1]  [ 933/3119]  eta: 1:00:12  train_loss: 0.669630 (1.730488)  lr: 0.000000 (0.000000)  time: 1.643826  data: 0.000206  max mem: 27074
+Epoch: [1]  [1244/3119]  eta: 0:51:34  train_loss: 0.561301 (1.458382)  lr: 0.000000 (0.000000)  time: 1.642142  data: 0.000231  max mem: 27074
+Epoch: [1]  [1555/3119]  eta: 0:42:59  train_loss: 0.465216 (1.280376)  lr: 0.000000 (0.000000)  time: 1.645603  data: 0.000199  max mem: 27074
+Epoch: [1]  [1866/3119]  eta: 0:34:26  train_loss: 0.452025 (1.147503)  lr: 0.000000 (0.000000)  time: 1.648803  data: 0.000218  max mem: 27074
+Epoch: [1]  [2177/3119]  eta: 0:25:53  train_loss: 0.450142 (1.049918)  lr: 0.000000 (0.000000)  time: 1.647455  data: 0.000271  max mem: 27074
+Epoch: [1]  [2488/3119]  eta: 0:17:20  train_loss: 0.355059 (0.970381)  lr: 0.000000 (0.000000)  time: 1.649492  data: 0.000209  max mem: 27074
+Epoch: [1]  [2799/3119]  eta: 0:08:47  train_loss: 0.332338 (0.905357)  lr: 0.000000 (0.000000)  time: 1.646775  data: 0.000197  max mem: 27074
+Epoch: [1]  [3110/3119]  eta: 0:00:14  train_loss: 0.322259 (0.852277)  lr: 0.000000 (0.000000)  time: 1.649873  data: 0.000521  max mem: 27074
+Epoch: [1]  [3118/3119]  eta: 0:00:01  train_loss: 0.347868 (0.851059)  lr: 0.000000 (0.000000)  time: 1.640803  data: 0.000507  max mem: 27074
+Epoch: [1] Total time: 1:25:41 (1.648584 s / it)
+Averaged stats: train_loss: 0.347868 (0.851059)  lr: 0.000000 (0.000000)
+Epoch 1, LR 2.08e-07, Train_Time 5141.98s, Loss: 0.8511
+----------------------2026-03-02_22_25_24 on train set----------------------
+ ma: 0.5878, Acc: 0.2289, F1: 0.3569

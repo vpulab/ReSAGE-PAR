@@ -1,0 +1,104 @@
+# Stage A Generation Configuration
+# Usage: python src/stage_a_generation/run_stage_a.py --config configs/stage_a.yaml
+
+# Experiment name
+name: "stage_a_generation"
+
+# Model configuration
+model:
+  pretrained_model_name_or_path: "../../stablediffusionmodel/models--stabilityai--stable-diffusion-2-1/snapshots/5cae40e6a2745ae2b01ad92ae5043f95f23644d6/"
+  # revision: null
+  # variant: null
+
+# Dataset configuration (optional custom paths)
+# Uncomment and set these to override default dataset paths
+dataset:
+  # path_dataset: "/path/to/custom/dataset/"    # Custom path to images (default based on dataset_name)
+  # path_gt: "/path/to/custom/dataset_all.pkl"  # Custom path to ground truth pickle
+  # path_gt_img: "/path/to/custom/images/"      # Custom path to gt images
+
+# Generation configuration
+generation:
+  # Paths
+  path_syn: "rapzs_lora_4_with_transform_256_192_loss_train_model_21/"
+  output_dir: "rapzs_lora_4_with_transform_256_192_loss_train_model_21"
+  
+  # Dataset configuration
+  dataset_name: "RAPzs"
+  # train_data_dir: null
+  # dataset_config_name: null
+  
+  # Image parameters
+  height: 256
+  width: 192
+  transform: false
+  center_crop: false
+  random_flip: false
+  
+  # LoRA parameters
+  rank: 4
+  
+  # Batch size for memory management
+  batch_size_memory: 5000
+  
+  # Attribute editing and prompt generation
+  attribute_policy: "gt"
+  prompt_dataset: "RAPzs"
+  prompt_format_type: "fixed-rule"
+  
+  # Column names
+  # image_column: "image"
+  # caption_column: "text"
+  
+  # Validation/inference parameters
+  # validation_prompt: null
+  # num_validation_images: 4
+  # num_final_validation_images: 500
+  # validation_epochs: 1
+  
+  # Training samples (for testing)
+  # max_train_samples: null
+  
+  # Cache
+  # cache_dir: null
+  
+  # Seed
+  # seed: null
+  
+  # Learning rate scheduler
+  # lr_scheduler: "constant"
+  # lr_warmup_steps: 500
+  # snr_gamma: null
+  
+  # Optimizer parameters
+  # adam_beta1: 0.9
+  # adam_beta2: 0.999
+  # adam_weight_decay: 0.01
+  # adam_epsilon: 1e-08
+  # max_grad_norm: 1.0
+  
+  # Other parameters
+  # use_8bit_adam: false
+  # allow_tf32: false
+  # dataloader_num_workers: 0
+  # scale_lr: false
+  # enable_xformers_memory_efficient_attention: false
+  # noise_offset: 0
+  # gradient_checkpointing: false
+  # gradient_accumulation_steps: 1
+
+# Flags
+testing: true
+
+# Output configuration
+output:
+  logging_dir: "logs"
+  # mixed_precision: null
+  # report_to: "tensorboard"
+  # push_to_hub: false
+  # hub_model_id: null
+  # hub_token: null
+  # prediction_type: null
+  # checkpointing_steps: 500
+  # checkpoints_total_limit: null
+  # resume_from_checkpoint: null
