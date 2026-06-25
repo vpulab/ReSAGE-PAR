@@ -444,6 +444,7 @@ def _save_and_evaluate(img_paths, rows_pos, rows_neg, split_name, gt_aligned, cs
     
     return metricas
 
+endNameSelected = "_pos"
 
 
 def cmd_train(args):
@@ -473,18 +474,43 @@ def cmd_train(args):
         imgpaths = [os.path.basename(p) for p in df["imgpath"].astype(str).tolist()]
     else:
         imgpaths = [f"row_{i}" for i in range(len(df))]
-    attr_names: list[str] = []
-    activated_vectors: list[list[int]] = []
+    
+    
+    global endNameSelected 
     if df_sanity is not None:
         raw_pos_cols = [c for c in df_sanity.columns if str(c).endswith("_pos")]
-        # Exclude non-attribute columns present in sanity_check
         exclude_bases = {"prompt", "num_attr"}
-        pos_cols = [c for c in raw_pos_cols if c[:-4] not in exclude_bases]
-        attr_names = [c[:-4] for c in pos_cols]
-        mat = df_sanity[pos_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0).to_numpy(dtype=float)
-        mat = np.clip(np.rint(mat), 0, 1).astype(int)
-        mat = np.where(mat == 0, -1, 1)
-        activated_vectors = [row.tolist() for row in mat]
+        pos_cols = [c for c in raw_pos_cols if c[:-len(endNameSelected)] in dataset.listAttributes and c[:-len(endNameSelected)] not in exclude_bases]
+
+        pos_cols_filtered = [attrib for attrib in pos_cols if attrib[:-len(endNameSelected)] in dataset.listUsedAllPromptAtDS]
+
+        attr_names = [c[:-len(endNameSelected)] for c in pos_cols_filtered]
+        
+        # 1. Extraemos los números y nos aseguramos de que sean 0 o 1 puros
+        mat_01 = df_sanity[pos_cols_filtered].apply(pd.to_numeric, errors="coerce").fillna(0.0).to_numpy(dtype=float)
+        mat_01 = np.clip(np.rint(mat_01), 0, 1).astype(int)
+        
+        # Guardamos el Ground Truth real de forma segura (0 y 1)
+        gt_vectors = [row.tolist() for row in mat_01]
+        
+        # Mantenemos tu lógica antigua para la máscara de activaciones (1 y -1)
+        mat_act = np.where(mat_01 == 0, -1, 1)
+        activated_vectors = [row.tolist() for row in mat_act]
+
+        # Ahora sacamos los attributos activados para los prompts negativos
+        raw_neg_cols = [c for c in df_sanity.columns if str(c).endswith("_neg")]
+        exclude_bases = {"prompt", "num_attr"}
+        neg_cols = [c for c in raw_neg_cols if c[:-len(endNameSelected)] in dataset.listAttributes and c[:-len(endNameSelected)] not in exclude_bases]
+        
+        neg_cols_filtered = [attrib for attrib in neg_cols if attrib[:-len(endNameSelected)] in dataset.listUsedAllPromptAtDS]
+
+        
+        # 1. Extraemos los números y nos aseguramos de que sean 0 o 1 puros
+        mat_01_neg = df_sanity[neg_cols_filtered].apply(pd.to_numeric, errors="coerce").fillna(0.0).to_numpy(dtype=float)
+        mat_01_neg = np.clip(np.rint(mat_01_neg), 0, 1).astype(int)
+        # Mantenemos tu lógica antigua para la máscara de activaciones (1 y -1)
+        mat_act_neg = np.where(mat_01_neg == 0, -1, 1)
+        activated_vectors_neg = [row.tolist() for row in mat_act_neg]
     else:
         raise ValueError(f"Df sanity is None for training data at {train_xlsx}")
 
@@ -495,16 +521,12 @@ def cmd_train(args):
     labeling_policy = LabelingPolicy(policy=labeling_policy_type)
 
     if strategy == "identity":
-        stats = executeTrainIdentityStrategy(
-            strategy, df, clf, clf_tag, artifacts, imgpaths, attr_names, activated_vectors,
-            prob_threshold, random_state=args.random_state, val_frac=args.val_frac,
-            labeling_policy=labeling_policy, args=args
-        )
+        stats = executeTrainIdentityStrategy(strategy, df, clf, clf_tag, artifacts, imgpaths, attr_names, activated_vectors, activated_vectors_neg, gt_vectors, prob_threshold, random_state=args.random_state, val_frac=args.val_frac, labeling_policy=labeling_policy, args=args)
     else:
         raise NotImplementedError(f"Training for strategy '{strategy}' not implemented yet.")
     
     train_txt = os.path.join(artifacts, "results_train.txt")
-    _save_text(train_txt, json.dumps(stats, indent=2))
+    _save_text(train_txt, json.dumps(stats, indent=2, cls=NumpyEncoder))
     print(f"Metrics saved to: {train_txt}")
 
     return stats
@@ -605,17 +627,51 @@ def cmd_test(args):
         imgpaths = [os.path.basename(p) for p in df["imgpath"].astype(str).tolist()]
     else:
         imgpaths = [f"row_{i}" for i in range(len(df))]
+    
     attr_names: list[str] = []
     activated_vectors: list[list[int]] = []
+    gt_vectors: list[list[int]] = [] # <-- NUEVA MATRIZ PARA EL GROUND TRUTH REAL DE TEST
+    
+    global endNameSelected 
+
     if df_sanity is not None:
         raw_pos_cols = [c for c in df_sanity.columns if str(c).endswith("_pos")]
         exclude_bases = {"prompt", "num_attr"}
-        pos_cols = [c for c in raw_pos_cols if c[:-4] not in exclude_bases]
-        attr_names = [c[:-4] for c in pos_cols]
-        mat = df_sanity[pos_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0).to_numpy(dtype=float)
-        mat = np.clip(np.rint(mat), 0, 1).astype(int)
-        mat = np.where(mat == 0, -1, 1)
-        activated_vectors = [row.tolist() for row in mat]
+        pos_cols = [c for c in raw_pos_cols if c[:-len(endNameSelected)] in dataset.listAttributes and c[:-len(endNameSelected)] not in exclude_bases]
+
+        pos_cols_filtered = [attrib for attrib in pos_cols if attrib[:-len(endNameSelected)] in dataset.listUsedAllPromptAtDS]
+
+
+        attr_names = [c[:-len(endNameSelected)] for c in pos_cols_filtered]
+        
+        # 1. Extraemos los números y nos aseguramos de que sean 0 o 1 puros
+        mat_01 = df_sanity[pos_cols_filtered].apply(pd.to_numeric, errors="coerce").fillna(0.0).to_numpy(dtype=float)
+        mat_01 = np.clip(np.rint(mat_01), 0, 1).astype(int)
+        
+        # Guardamos el Ground Truth real de forma segura (0 y 1)
+        gt_vectors = [row.tolist() for row in mat_01]
+        
+        # Mantenemos tu lógica antigua para la máscara de activaciones (1 y -1)
+        mat_act = np.where(mat_01 == 0, -1, 1)
+        activated_vectors = [row.tolist() for row in mat_act]
+
+        
+
+        raw_neg_cols = [c for c in df_sanity.columns if str(c).endswith("_neg")]
+        exclude_bases = {"prompt", "num_attr"}
+        neg_cols = [c for c in raw_neg_cols if c[:-len(endNameSelected)] in dataset.listAttributes and c[:-len(endNameSelected)] not in exclude_bases]
+
+        neg_cols_filtered = [attrib for attrib in neg_cols if attrib[:-len(endNameSelected)] in dataset.listUsedAllPromptAtDS]
+
+
+        # 1. Extraemos los números y nos aseguramos de que sean 0 o 1 puros
+        mat_01_neg = df_sanity[neg_cols_filtered].apply(pd.to_numeric, errors="coerce").fillna(0.0).to_numpy(dtype=float)
+        mat_01_neg = np.clip(np.rint(mat_01_neg), 0, 1).astype(int)
+        
+        
+        # Mantenemos tu lógica antigua para la máscara de activaciones (1 y -1)
+        mat_act_neg = np.where(mat_01_neg == 0, -1, 1)
+        activated_vectors_neg = [row.tolist() for row in mat_act_neg]
     else:
         raise ValueError(f"df_sanity is None for test data at {test_xlsx}")
     
@@ -625,15 +681,17 @@ def cmd_test(args):
     labeling_policy = LabelingPolicy(policy=labeling_policy_type)
 
     if strategy == "identity":
-        stats = executeTestIdentityStrategy(strategy, df, clf, clf_tag, artifacts, imgpaths, attr_names, activated_vectors, prob_threshold, labeling_policy)
+        clf_path = os.path.join(artifacts, "classifier.pkl")
+        clf = _load_classifier_generic(clf_path)
+        # Asumo que añadirás gt_vectors aquí si luego actualizas executeTestIdentityStrategy
+        stats = executeTestIdentityStrategy(strategy, df, clf, clf_tag, artifacts, imgpaths, attr_names, activated_vectors, activated_vectors_neg, gt_vectors, prob_threshold, labeling_policy)
     else:
         raise NotImplementedError(f"Training for strategy '{strategy}' not implemented yet.")
    
     test_txt = os.path.join(artifacts, "results_test.txt")
-    _save_text(test_txt, json.dumps(stats, indent=2))
+    # AÑADIMOS EL NUMPY ENCODER PARA QUE NO CRASHEE AL GUARDAR
+    _save_text(test_txt, json.dumps(stats, indent=2, cls=NumpyEncoder))
     print(f"Metrics saved to: {test_txt}")
-
-    return
 
 import json
 class NumpyEncoder(json.JSONEncoder):
@@ -934,10 +992,7 @@ def cmd_labeling_syn(args):
         mat = np.where(mat == 0, -1, 1)
         activated_vectors = [row.tolist() for row in mat]
     else:
-        print("[labelingSyn] Warning: no sanity_check sheet found; activated attribute vectors will be empty.")
-        # Fallback: try to synthesize zero-length vectors (will yield all -1)
         activated_vectors = [[] for _ in range(len(df_prom))]
-        attr_names = []
 
     #print(activated_vectors)
 
@@ -951,11 +1006,13 @@ def cmd_labeling_syn(args):
         raise ValueError(f"Unknown strategy '{strategy}'. Supported: {list(STRATEGY_COLUMN_MAP.keys())}")
     
 
-    labeling_policy_type = getattr(args, "labeling_policy", "hardlabeling")
-    labeling_policy = LabelingPolicy(policy=labeling_policy_type)
+    prob_threshold = float(getattr(args, "threshold", 0.5))
 
     if strategy == "identity":
-        executeSynLabelingIdentityStrategy(strategy, df_prom, clf, artifacts, args, imgpaths, attr_names, activated_vectors, prob_threshold=float(getattr(args, "threshold", 0.5)), labeling_policy=labeling_policy)
+        clf_path = os.path.join(artifacts, "classifier.pkl")
+        clf = _load_classifier_generic(clf_path)
+        labeling_policy = LabelingPolicy(policy=getattr(args, "labeling_policy", "hardlabeling"))
+        executeSynLabelingIdentityStrategy(strategy, df_prom, clf, artifacts, args, imgpaths, attr_names, activated_vectors, prob_threshold, labeling_policy=labeling_policy)
     else:
         raise NotImplementedError(f"Synthetic labeling for strategy '{strategy}' not implemented yet.")
     
