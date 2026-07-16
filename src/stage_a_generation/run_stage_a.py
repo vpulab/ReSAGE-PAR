@@ -158,11 +158,11 @@ def generateFinalVal(args, dataset, pipeline, generator, attribute_editor, promp
             dataset_class = DATASET_CLASSES[args.dataset_name]
             # Most dataset classes expect a 'split' argument
             dataset_instance = dataset_class(split="train")
-            if hasattr(dataset_instance, 'listAllAttrib'):
-                attribute_names = [str(a).strip() for a in dataset_instance.listAllAttrib]
+            if hasattr(dataset_instance, 'listAttributes'):
+                attribute_names = [str(a).strip() for a in dataset_instance.listAttributes]
                 print(f"Loaded {len(attribute_names)} attribute names from class: {attribute_names[:5]}...")
             else:
-                print(f"Warning: Dataset class has no 'listAllAttrib' attribute")
+                print(f"Warning: Dataset class has no 'listAttributes' attribute")
         except Exception as e:
             print(f"Warning: Could not load attribute names from dataset class: {e}")
             import traceback
@@ -290,7 +290,7 @@ def generateFinalVal(args, dataset, pipeline, generator, attribute_editor, promp
             img_g.save(os.path.join(patToSaveImgsGen,  gen_name))
 
             row = {"condImg": cond_name, "genImg": gen_name, "prompt": prompt}
-            print(prompt)
+            
             if has_vector:
                 # Original (ground truth) vector
                 vec_gt = np.asarray(batch["vector"][i]).ravel().tolist()
@@ -724,10 +724,10 @@ def parse_args():
             config = yaml.safe_load(f)
         
         # Extract sections from config
-        model_config = config.get("model", {})
-        generation_config = config.get("generation", {})
-        output_config = config.get("output", {})
-        dataset_config = config.get("dataset", {})
+        model_config = config.get("model", {}) or {}
+        generation_config = config.get("generation", {}) or {}
+        output_config = config.get("output", {}) or {}
+        dataset_config = config.get("dataset") or {}
         
         # Apply config values to args - use same names as CLI arguments
         # Model configuration
