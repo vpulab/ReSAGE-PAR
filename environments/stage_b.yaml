@@ -1,4 +1,4 @@
-name: stage_b
+name: stage_b_test
 channels:
   - pytorch
   - nvidia
@@ -34,3 +34,4 @@ dependencies:
     - datasets
     - peft         
     - diffusers
+    - easydict
