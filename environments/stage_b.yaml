@@ -1,4 +1,4 @@
-name: stage_b_test
+name: stage_b
 channels:
   - pytorch
   - nvidia
